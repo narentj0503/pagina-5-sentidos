@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/2r.png" type="image/png">
+  <title>Tacto</title>
+<style>
+
+    
+    body {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    /* Mensaje arriba*/
+
+ #welcom {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+  background-color: #ffd1d1;
+}
+
+#welcom p {
+  color:#e48686 ;
+  font-size: 16px;
+  margin: 0; 
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+}
+
+
+/*navegador con buscador*/
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgb(255, 255, 255);
+  height: 70px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 200px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  width: 400px; 
+  border: 1px solid#e48686; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  caret-color: #e48686;
+  color: #333;
+  opacity: 1; 
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+
+.search-box:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-box:active {
+  border: 1px solid#e48686 !important;
+  outline: none; 
+}
+
+
+.lupa-btn {
+  background: none;
+  border:#ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  color: #e48686;
+}
+
+
+#iconBtn {
+  background: none;   
+  border: none;        
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#e48686;      
+}
+
+#iconBtn svg {
+  stroke: #e48686;     
+}
+
+/**/
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.imagen-png {
+  height: 60px;
+  width: auto;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right img {
+  width: 24px;
+  margin-left: 15px;
+  border-radius: 30px;
+}
+
+  #lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid #e48686;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px#e48686;
+  }
+
+  .opcion-buscador {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+  }
+
+  .opcion-buscador:hover {
+    background-color:#ff878788;
+  }
+
+  .opcion-buscador.bloqueado {
+    cursor: not-allowed;
+  }
+/* Estilo placeholder */
+.search-box::placeholder {
+  color: #e48686;
+  font-style: italic;
+}
+
+
+
+/* nav de los sentidos*/
+
+    h1 {
+      color: rgb(0, 0, 0);
+      font-style: italic;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
+
+.navbarr {
+  background-color: #fdbfbf;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 6px;
+}
+
+.navbarr ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2px;
+}
+
+.navbarr a {
+  text-decoration: none;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 8px 50px; /* Añade espacio alrededor del texto */
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+.navbarr a:hover {
+  color: #ff8787;
+  background-color:#e4868659;
+}
+
+
+
+/*Mensaje final*/
+    #mensajeFinal{
+      margin: 0;
+      padding: 0;
+    
+      background-image: url('img/azul.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      height: 400px;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; 
+    }
+
+#mensajeFinal p {
+  margin: 0;          
+  padding: 0;         
+  line-height: 1.4;   
+
+}
+
+
+
+  /*Footer*/
+footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  background-image: url('img/nuber.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 100px;
+  top: 20px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura deseada para la nube */
+  background-image: url('img/nuber.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer contenido encima de la nube */
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 5%;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+
+.footer-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#logo_footer{
+      width: 200px;
+      height: 200px;
+      object-fit: cover; 
+      margin-right: 250px;
+}
+
+.footer-center {
+  max-width: 400px;
+  flex: 1 1 300px;
+  margin-right: 150px;
+}
+
+.footer-center h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color:#e48686;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+button[type="submit"] {
+  background-color: #e48686;  /* color original */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff8787 /* color un poco más claro cuando está encima */
+}
+
+button[type="submit"]:active {
+  background-color: #ff8787; /* color más oscuro al hacer click */
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid#e48686!important;
+  outline: none; 
+  cursor: pointer;
+  color:#e48686;
+}
+
+.newsletter-form button {
+  padding: 10px;
+  font-family: "Cormorant Garamond", serif;
+  background:#e48686;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  border: 1px solid #e48686 !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.footer-links {
+  flex: 1 1 300px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #e48686;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: auto;
+  }
+  .custom-modal-content {
+    background-color: white;
+    color: #000000; /* Asegura que el texto sea negro */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+   .custom-modal-content p{
+    color: #000000; /* Asegura que el texto sea negro */
+    font-size: 20px;
+   }
+   .custom-modal-content h1{
+    color:  #e48686; /* Asegura que el texto sea negro */
+   }
+
+
+.modal-content-faqs {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-shipping{
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-policy {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-terms {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+  .myClose-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .footer-links a {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+#divenblanco{
+   background:  #ffd1d1;
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 70px;
+}
+
+.footer-bottom {
+  position: relative;
+  padding: 30px 5%;
+  background:#fdbfbf;
+  margin-top: 3px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+}
+
+
+.nube-superpuesta {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: -40px; /* Ajusta cuánto se superpone sobre el fondo azul */
+}
+
+.nube-superpuesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; 
+  user-select: none;
+}
+/*inicio olfato*/
+
+#section1 {
+  position: relative;
+  height: 450px; /* o lo que necesites */
+  overflow: visible;
+  opacity: 80%;
+}
+
+/* Capa 1 - Imagen de fondo */
+.background-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Capa 2 - Div blanco con sombra */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  background-color:#ffffff;
+  padding: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 12px;
+  width: 50%;
+  color: #fdbfbf;
+  border: 3px dashed #fdbfbf; /* Cambia a dotted si prefieres puntos */
+  border-radius: 30px;       /* Opcional, para esquinas redondeadas */
+}
+
+.overlay::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.overlay::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/* Capa 3 - Párrafo */
+.overlay p {
+  font-size: 18px;
+  color:#e48686;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.overlay h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color:#ff8787;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+  margin-top: 0%;
+}
+
+    .overlay:hover {
+      box-shadow: 0 0 20px #e48686;
+    }
+
+
+/* Stickers */
+.sticker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* para que mantenga proporción si quieres */
+  z-index: 10; /* siempre encima */
+  cursor: pointer; /* opcional: cambia cursor si quieres que sean interactivos */
+}
+
+#minidiv{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #fdbfbf;
+}
+#minidivespecial{
+  margin-top: 150px;
+  height: 3px;
+  width: 100%;
+  background-color: #fdbfbf;
+}
+
+/* carrusel de curiosidades */
+#tacto-curiosidades {
+  background-image: url('img/fondoblanco.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  position: relative; /* importante para posicionar manos absolutas dentro */
+  overflow: hidden; /* por si las manos sobresalen */
+}
+@keyframes manosMoviendose {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay1 {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 1rem;
+  margin-top: 20%;
+  width: 300px;
+  margin-left: 22%;
+}
+
+.carousel-item p {
+  color: #000000;
+  font-size: 20px;
+}
+
+.carousel-item h1 {
+  color: #000000;
+  font-size: 22px;
+}
+
+.bg1 { background-image: url('img/huella.png'); }
+.bg2 { background-image: url('img/castor.png'); }
+.bg3 { background-image: url('img/terciopelo.png'); }
+.bg4 { background-image: url('img/abrazo.png'); }
+.bg5 { background-image: url('img/estrellademar.png'); }
+.bg6 { background-image: url('img/dedos.png'); }
+.bg7 { background-image: url('img/medusa.png'); }
+.bg8 { background-image: url('img/masaje.png'); }
+
+button:hover {
+  cursor: pointer;
+}
+
+/* carrusel movimiento */
+#carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* MANOS flotantes animadas */
+.hand {
+  position: absolute;
+  width: 300px; /* más grandes */
+  animation: float 3s ease-in-out infinite; /* movimiento más rápido */
+  z-index: 0;
+   opacity: 100%;
+}
+
+.hand1 {
+  top: 5%;
+  left: 2%;
+  animation-delay: 0s;
+}
+
+.hand2 {
+  top: 45%;
+  right: -10%;
+  animation-delay: 1s;
+}
+
+.hand3 {
+  bottom: 60%;
+  left: 65%;
+  animation-delay: 2s;
+}
+.hand4 {
+  bottom: 5%;
+  left:20%;
+  animation-delay: 2s;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  25% {
+    transform: translate(15px, -45px) rotate(5deg); /* más movimiento lateral y vertical */
+  }
+  50% {
+    transform: translate(0px, -40px) rotate(-5deg); /* movimiento amplio arriba */
+  }
+  75% {
+    transform: translate(-15px, -45px) rotate(5deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+/* ------------------------- */
+/* Separador inferior */
+#minidiv2 {
+  margin-top: 0%;
+  height: 4px;
+  width: 100%;
+  background-color: #fdbfbf;
+}
+
+
+/* ------------------------- */
+/* Carrusel de sensaciones */
+    .carousel-container {
+      overflow: hidden;
+      border-top: 1px solid #f4b9b9;
+      border-bottom: 1px solid #f4b9b9;
+      background-color: #ffd1d1;
+      padding: 2rem 0;
+    }
+    .carousel-container h2{
+    font-size: 30px;
+    color:#e48686;
+    font-family: "Cormorant Garamond", serif;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      gap: 3rem;
+      animation: scroll 30s linear infinite;
+    }
+
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .star-wrapper {
+      position: relative;
+      width: 200px;
+      height: 240px;
+      flex-shrink: 0;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .star-wrapper:hover {
+      transform: scale(1.1);
+    }
+
+    .star-rotating-group {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      animation: spin 6s linear infinite;
+    }
+
+    .star-border {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+      background-color: #e18282;
+      z-index: 1;
+       box-shadow: 0 0 20px #ff69b4;
+    }
+
+    .star-border:hover {
+       box-shadow: 0 0 20px #ff69b4;
+      transform: scale(1.1);
+    }
+
+
+    .star-img-wrapper {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 180px;
+      height: 180px;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+      background-color: #ffffff;
+      z-index: 2;
+    }
+
+    .star-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .description {
+      margin-top: 0px;
+      font-size: 20px;
+      color: #f17e7e;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+
+/*carta con la pista*/
+
+.titilar {
+  margin-top: -10px;
+  animation: titilar 3s infinite;
+  color:  #e48686; /* o el color que desees */
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes titilar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+   .container {
+     margin-top: 120px;
+      position: relative;
+      width: 500px;
+      height: 300px;
+      perspective: 1000px;
+      margin-left: 31%;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    .envelope-body {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffd1d1;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px  rgba(0,0,0,0.3), 0 10px 20px  rgba(0,0,0,0.3);
+      background-image: url('https://www.transparenttextures.com/patterns/paper.png');
+      filter: sepia(0.3) contrast(1.05);
+      z-index: 1;
+    }
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffd1d1;
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  transform-origin: top center;
+  transition: transform 0.7s ease;
+  z-index: 3;
+  background-image:
+    url('https://www.transparenttextures.com/patterns/paper.png'),
+    linear-gradient(to bottom, #e4868625, transparent 70%);
+  background-blend-mode: multiply;
+  filter: sepia(0.3) contrast(1.05);
+  box-shadow:
+    inset 0 -15px 20px rgba(0, 0, 0, 0.25),
+    0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+    .heart {
+      position: absolute;
+      top: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      z-index: 4;
+      color: #a14747;
+    }
+
+    .letter {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: #f5f0e6;
+      border-radius: 6px;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: inset 0 0 20px #e48686, 0 4px 10px #e48686;
+      transition: top 0.7s ease, opacity 0.5s ease;
+      z-index: 0;
+      opacity: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      filter: sepia(0.4) contrast(1.1);
+    }
+
+    .letter p {
+      margin: 0;
+      font-size: 16px;
+      color:  #e48686;
+     font-family: "Cormorant Garamond", serif;
+    }
+
+   .open .flap {
+  transform: rotateX(-160deg);
+  z-index: 0;
+}
+    .open .letter {
+      top: -60px;
+      opacity: 1;
+    }
+
+    .shadow {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 100px;
+      height: 20px;
+      background:   rgba(0,0,0,0.3);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      filter: blur(4px);
+    }
+    
+.btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color:#e48686;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color: #ff8787;
+}
+.elrenegado{
+  height: 70px;
+  position: absolute;
+  margin-top: 35px;
+  z-index: 8888;
+  justify-content: center;
+  width: 100%;
+  color: #ff8787;
+  font-size: 25px;
+  font-family: "Cormorant Garamond", serif;
+}
+/*pista peluda*/
+
+.scratch-section {
+  width: 100%;
+  height: 300px; /* o el alto que quieras */
+  position: relative;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+.scratch-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#scratchCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+}
+
+.scratch-message {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff69b4;
+  background: #fff0f5; /* fondo por si aún no raspas nada */
+  text-align: center;
+  padding: 20px;
+}
+
+  .flecha-rosa{
+    color: #ff8787;
+  }
+
+/* ==========================
+   MENSAJE: Vista Desbloqueada
+========================== */
+#mensaje-vista-desbloqueada {
+  animation: titilar 1.5s infinite ease-in-out;
+  background-color: #ffffff86; /* Verde */
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(139, 64, 64, 0.25);
+  color: #ff8787;
+  cursor: default;
+  display: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25rem;
+  left: 50%;
+  padding: 20px 35px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  z-index: 9999;
+}
+
+#mensaje-vista-desbloqueada.mostrar {
+  display: block;
+}
+
+/* Animación de titileo suave */
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+/* ==========================
+   MENSAJE: Scroll Obligatorio
+========================== */
+.mensaje-scroll {
+  animation: parpadeo 1s infinite;
+  background-color: #fff;
+  border: 2px solid #ff8787;
+  color: #ff8787;
+  display: none;
+  font-size: 1.2em;
+  left: 50%;
+  padding: 20px 30px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* Animación de parpadeo */
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+</style>
+
+</head>
+<body>
+  <!-- Frase inicial -->
+
+    <section id="welcom">
+      <p >Amor en todos los sentidos...</p>
+    </section>
+   
+
+  <!-- nav con buscador -->
+
+<nav>
+<div class="nav-left"> 
+  <div class="search-wrapper">
+    <button class="icon-btn" id="iconBtn" aria-label="Buscar">
+      <!-- Lupa SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <input type="text" placeholder="Buscar sentido..." class="search-box" id="inputBox" class="input-buscador" >
+  </div>
+</div>
+
+
+<div class="nav-center">
+  <section class="hero">
+   <a href="index.html"><img src="img/4r.png" alt="Imagen decorativa" class="imagen-png"></a> 
+  </section>
+</div>
+
+  <div class="nav-right social-icons">
+    <a href="https://www.instagram.com/accounts/onetap/?next=%2F&hl=es-la" target="_blank" rel="noopener noreferrer"><img src="img/instagramr.jpg" alt="I" /></a>
+    <a href="https://co.pinterest.com/gnarent/_profile/" target="_blank" rel="noopener noreferrer"><img src="img/pinterestr.jpg" alt="P" /></a>
+    <a href="https://www.facebook.com/share/15G8ndSGjp/" target="_blank" rel="noopener noreferrer"><img src="img/facebookr.jpg" alt="F" /></a>
+    <a href="https://www.tiktok.com/@njgq18?_t=ZS-8wWTbLR7kRd&_r=1" target="_blank" rel="noopener noreferrer"><img src="img/tiktokr.jpg" alt="T" /></a>
+  </div>
+</nav>
+
+
+
+ <!-- nav de sentidos -->
+  
+<nav class="navbarr"> 
+  <ul>
+    <li><a href="olfato.html" data-opcion="olfato">Olfato</a></li>
+    <li><a href="oido.html" data-opcion="oido">Oído</a></li>
+    <li><a href="gusto.html" data-opcion="gusto">Gusto</a></li>
+    <li><a href="tacto.html" data-opcion="tacto">Tacto</a></li>
+    <li><a href="vista.html" data-opcion="vista" id="link-vista">Vista</a></li>
+  </ul>
+</nav>
+<div class="contenedor-volver">
+  <a href="index.html" class="btn-flotante" id="btn-volver" title="Volver al inicio">⬅</a>
+  <p id="mensajeVolver" style="display: none; margin-left: 8px; font-weight: bold; color: green;">
+    Vuelve al inicio
+  </p>
+</div>
+  <!-- introduccion -->
+<section id="section1">
+  <img src="img/fondomano.png" alt="Fondo" class="background-img" />
+  <div class="overlay">
+<h1>¿Para qué sirve el tacto?</h1>
+<p>El tacto nos permite percibir la temperatura, la presión, el dolor y la textura de los objetos, siendo fundamental para protegernos de posibles daños físicos. Es el primer sentido que desarrollamos y está compuesto por receptores nerviosos en la piel que detectan estas sensaciones. Las señales que captan viajan desde la piel hasta la médula espinal y luego al cerebro, donde se interpretan para que podamos experimentar y comprender el mundo a nuestro alrededor a través de el.</p>
+
+<p>Más allá de protegernos del daño físico, el tacto también es una poderosa fuente de conexión emocional. A través del contacto físico, como los abrazos, las caricias o los apretones de mano, el tacto fortalece los vínculos afectivos y transmite consuelo, seguridad y amor.</p>
+
+<p> El tacto guarda secretos que van más allá del contacto… por ejemplo, yo,
+a través de tus abrazos entendí que el amor también se siente con la piel y
+que el calor de tu cuerpo  puede sanar lo que las palabras no alcanzan. 
+Al final de esta página, una pista te espera, suave como una caricia.
+</p>
+
+  </div>
+
+  <!-- Stickers -->
+  <img src="img/sueter.png" alt="Sticker 1" class="sticker" style="top: 10px; left: 290px;">
+  <img src="img/tocacion.png" alt="Sticker 2" class="sticker" style="top: 320px; left: 1000px;">
+</section>
+<div id="minidiv"></div>
+
+ <!-- curiosidades -->
+<section id="tacto-curiosidades" style="padding: 2rem; border-radius: 1rem; position: relative; overflow: hidden; background-color: #ffe0f0;">
+
+  <!-- FONDO ANIMADO DE MANOS -->
+  <img src="img/izquierda.png" class="hand hand1" />
+  <img src="img/derecha.png" class="hand hand2" />
+  <img src="img/izquierda.png" class="hand hand3" />
+  <img src="img/derecha.png" class="hand hand4" />
+
+  <h2 style="text-align: center; color:#e48686;">Curiosidades del tacto</h2>
+
+  <div style="position: relative; max-width: 600px; margin: auto; overflow: hidden; border-radius: 1rem; z-index: 2;">
+    <div id="carousel" style="display: flex; transition: transform 0.5s ease;">
+          <div class="carousel-item bg2">
+        <div class="overlay1">
+          <h1> <strong>Algunos animales, como los castores,</strong> </h1>
+          <p> tienen almohadillas táctiles especialmente sensibles en sus patas delanteras..</p>
+        </div>
+      </div>
+      <div class="carousel-item bg1">
+        <div class="overlay1">
+          <h1><strong>Las huellas dactilares no solo ayudan a agarrar objetos,</strong></h1>
+          <p> sino que también aumentan la sensibilidad táctil.</p>
+        </div>
+      </div>
+  
+      <div class="carousel-item bg3">
+        <div class="overlay1">
+          <h1> <strong>La textura del terciopelo se logra con fibras cortas y densas,</strong> </h1>
+          <p> lo que estimula nuestros receptores táctiles de forma muy suave.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg4">
+        <div class="overlay1">
+          <h1><strong>El tacto puede desencadenar la liberación de oxitocina, </strong> </h1>
+           <p>la hormona del amor y el apego.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg5">
+        <div class="overlay1">
+          <h1> <strong>Las estrellas de mar sienten el tacto a través de los pies tubulares,</strong> </h1>
+          <p> estos se ubican en la parte inferior de sus brazos.</p>
+        </div>
+      </div>
+        <div class="carousel-item bg6">
+        <div class="overlay1">
+          <h1> <strong>Los dedos humanos</strong></h1>
+          <p>pueden distinguir texturas con un grosor tan fino como 13 nanómetros.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg7">
+        <div class="overlay1">
+          <h1> <strong>Las medusas tienen células sensibles al tacto llamadas cnidocitos,</strong></h1>
+          <p>lo que hace que se dispare cuando algo las toca.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg8">
+        <div class="overlay1">
+          <h1> <strong>El masaje no solo relaja músculos,</strong></h1>
+          <p> sino que también estimula el sistema nervioso para mejorar el estado de ánimo.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="moveSlide(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-rosa">⬅</button>
+    <button onclick="moveSlide(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-rosa">➡</button>
+  </div>
+</section>
+
+<div id="minidiv"></div>
+  <!-- galeria olores favoritos -->    
+<section class="star-carousel">
+ <div class="carousel-container"> 
+  <h2>Sensaciones Placenteras</h2>
+    <div class="carousel-track">
+      <!-- Estrella 1 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/agua.jpg" alt="Estrella 1" class="star-img">
+          </div>
+        </div>
+        <p class="description">Agua</p>
+      </div>
+
+      <!-- Estrella 2 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/arena.jpg" alt="Estrella 2" class="star-img">
+          </div>
+        </div>
+        <p class="description">Arena</p>
+      </div>
+
+      <!-- Estrella 3 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/orbeez.jpg" alt="Estrella 3" class="star-img">
+          </div>
+        </div>
+        <p class="description">Orbeez</p>
+      </div>
+
+      <!-- Estrella 4 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/cuarzos.jpg" alt="Estrella 4" class="star-img">
+          </div>
+        </div>
+        <p class="description">Cuarzos</p>
+      </div>
+
+      <!-- Estrella 5 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/corteza.jpg" alt="Estrella 5" class="star-img">
+          </div>
+        </div>
+        <p class="description">Corteza</p>
+      </div>
+
+      <!-- Estrella 6 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/cobija.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Cobija suave</p>
+      </div>
+           <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/exfoliante.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Exfoliante</p>
+      </div>
+           <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/metalfrio.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Metal frio</p>
+      </div>
+
+      <!--repeticion-->
+
+        <!-- Estrella 1 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/agua.jpg" alt="Estrella 1" class="star-img">
+          </div>
+        </div>
+        <p class="description">Agua</p>
+      </div>
+
+      <!-- Estrella 2 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/arena.jpg" alt="Estrella 2" class="star-img">
+          </div>
+        </div>
+        <p class="description">Arena</p>
+      </div>
+
+      <!-- Estrella 3 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/orbeez.jpg" alt="Estrella 3" class="star-img">
+          </div>
+        </div>
+        <p class="description">Orbeez</p>
+      </div>
+
+      <!-- Estrella 4 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/cuarzos.jpg" alt="Estrella 4" class="star-img">
+          </div>
+        </div>
+        <p class="description">Cuarzos</p>
+      </div>
+
+      <!-- Estrella 5 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/corteza.jpg" alt="Estrella 5" class="star-img">
+          </div>
+        </div>
+        <p class="description">Corteza</p>
+      </div>
+
+      <!-- Estrella 6 -->
+      <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/cobija.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Cobija suave</p>
+      </div>
+           <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/exfoliante.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Exfoliante</p>
+      </div>
+           <div class="star-wrapper">
+        <div class="star-rotating-group">
+          <div class="star-border"></div>
+          <div class="star-img-wrapper">
+            <img src="img/metalfrio.jpg" alt="Estrella 6" class="star-img">
+          </div>
+        </div>
+        <p class="description">Metal frio</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<div id="minidiv"></div>
+<!-- carta con pista-->
+
+
+  <div class="container" id="envelopeContainer">
+      <p class="titilar">Toca aquí para descubrir dónde está tu regalo.</p>
+       
+    <div class="flap"></div>
+    <div class="envelope-body"></div>
+    <div class="heart">💖</div>
+    <div class="letter">
+      <p>"Este sentido que todo lo siente, hoy tiene dos regalos presentes. <br> Uno de ellos deberás buscar,donde mis pantalones suelo guardar."</p>
+    </div>
+    <div class="shadow"></div>
+</div>
+
+<div id="minidivespecial"></div>
+<!--pista peluda-->
+<section class="scratch-section">
+  <div class="scratch-container">
+    <p class="scratch-message">Lo que buscas no está aquí… Está donde quién alguna vez dijo...
+    "Brasil queda en Europa".</p>
+    <canvas id="scratchCanvas"></canvas>
+  </div>
+</section>
+<div id="minidiv"></div>
+   <div class="elrenegado"><em><p>"Cuando me tocas, el mundo se detiene, y solo queda la certeza de que existimos tú y yo".</p></em></div>
+  
+
+  <!-- footer , mensaje final-->
+
+<footer>
+
+
+  <div class="footer-main">
+    <div class="footer-left">
+      <img src="img/1r.png" alt="logo" id="logo_footer">
+    </div>
+
+<div class="footer-center">
+  <h3>Comunícate conmigo</h3>
+  <form id="contact-form" class="newsletter-form" action="https://script.google.com/macros/s/AKfycbyCQedUeIBqSWEVzoiIj5fGHQ3AR7t4_L8DrLVSqk2xui4VN8bPlpN62ouh6eELR5HB/exec" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje o comentario" rows="4" style="padding: 10px; border-radius: 20px; border: 1px solid #e48686; outline: none;" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="form-status" style="margin-top:10px; color: #ffffff;"></p>
+</div>
+
+ <div class="footer-links">
+  <div>
+    <h4>Info</h4>
+    <ul>
+      <li><a href="#" data-my-modal="myModal1">FAQs</a></li>
+      <li><a href="#" data-my-modal="myModal2">Shipping Policy</a></li>
+      <li><a href="#" data-my-modal="myModal3">Refund Policy</a></li>
+      <li><a href="#" data-my-modal="myModal4">Terms of Service</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modales personalizados -->
+<div id="myModal1" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-faqs">
+  <div class="modal-content-faqs">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>FAQs</h1></center> 
+
+<h2>1. ¿Qué tipo de página web es esta?</h2>
+<p>Es La Página Narent´s Senses™. Aquí no solo navegas: exploras, te ríes, recuerdas cosas de nosotros y... ¡buscas regalos escondidos como si fueras Marlin buscando a Nemo y a Dory!</p>
+
+<h2>2. ¿Los sentidos? ¿Así como vista, olfato y esas cosas?</h2>
+<p>Exacto. Cada sección está dedicada a uno de los sentidos: vista, oído, olfato, gusto y tacto. En cada uno encontrarás curiosidades, detalles nuestros y, si usas bien tus sentidos... una sorpresa escondida.</p>
+
+<h2>3. ¿O sea que tengo que buscar cosas? ¿Esto es una misión secreta?</h2>
+<p>Totalmente. Tu misión, si decides aceptarla (y debes), es encontrar el regalo escondido en cada sentido. Consejo: no hagas trampa.</p>
+
+<h2>4. ¿Qué pasa si me pierdo o no encuentro el regalo?</h2>
+<p>Puedes decirme. Te daré pistas. O haré como que no sé nada y me reiré mientras lo intentas.</p>
+
+<h2>5. ¿Esto es mejor que Netflix y Disney+?</h2>
+<p>¡Por supuesto! ¿Estas apps te dan un regalo escondido? No, no lo creo.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-shipping">
+  <div class="modal-content-shipping">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Shipping Policy</h1></center>
+<h2>¿Cómo llega tu regalo?</h2>
+<p>Cada regalo está empaquetado con todo el cariño del mundo y un toque extra de magia invisible para que llegue perfecto hasta tus manos.</p>
+
+<h2>¿Cuánto tarda en llegar?</h2>
+<p>Puede tardar desde “Ya casi” hasta “Cuando se pueda”, dependiendo de dónde estemos y del clima.</p>
+
+<h2>¿Y si se pierde?</h2>
+<p>Si eso pasa, te prometo que lo busco por todos lados, hasta debajo de la cama.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal3" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-policy">
+  <div class="modal-content-policy">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>Refund Policy</h1></center> 
+    <p>Aquí no hay reembolsos porque este regalo está hecho con puro amor y cero devoluciones.Así que, ¡disfrútalo y no pienses en devolverlo!.</p>
+
+    <p>Consejo amistoso: Disfruta el regalo.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal4" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-terms">
+  <div class="modal-content-terms">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Terms of Service</h1></center>
+<p>1.Este regalo es exclusivo y personalizado, por lo que no puede ser compartido ni prestado… a menos que quieras ganarte una multa.</p>
+
+<p>2.Cualquier intento de abrir el regalo antes de tiempo resultará en un sermón y posiblemente en un baile ridículo para distraerte.</p>
+
+<p>3.La sonrisa del receptor es obligatoria y, si no se cumple, Tendrá que ofrecer una sesión extra de mimos para corregirlo.</p>
+
+<p>4.Este regalo no es reembolsable, intercambiable ni transferible, pero sí es 100% garantizado para crear momentos memorables.</p>
+
+<p>5.Cualquier uso indebido del regalo será sancionado.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+</div><!-- cierra Modales personalizados -->
+</footer>
+<div id="divenblanco">
+
+</div>
+ <div class="footer-bottom">
+      <p>Narent's Senses © 2025</p>
+    </div>
+
+  <div id="mensaje-vista-desbloqueada">
+   ¡Has desbloqueado el sentido de la vista!
+  </div>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidoActual = 'tacto'; // Cambia según la página
+  const totalSentidos = 4;
+  const mensaje = document.getElementById('mensaje-vista-desbloqueada');
+
+  // Marcar sentido actual
+  let sentidos = JSON.parse(localStorage.getItem('sentidos')) || {};
+  sentidos[sentidoActual] = true;
+  localStorage.setItem('sentidos', JSON.stringify(sentidos));
+
+  // Verificar si ya se mostró el mensaje
+  const mensajeMostrado = localStorage.getItem('mensajeMostrado') === 'true';
+  const visitadosCount = Object.values(sentidos).filter(Boolean).length;
+
+  if (visitadosCount === totalSentidos && mensaje && !mensajeMostrado) {
+    const mostrarSiScrollAlFinal = () => {
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10)) {
+        mensaje.classList.add('mostrar');
+        localStorage.setItem('mensajeMostrado', 'true');
+      }
+    };
+
+    window.addEventListener('scroll', mostrarSiScrollAlFinal);
+
+    // Cerrar al hacer clic fuera del mensaje
+    document.addEventListener('click', (e) => {
+      if (mensaje.classList.contains('mostrar') && !mensaje.contains(e.target)) {
+        mensaje.classList.remove('mostrar');
+      }
+    });
+  }
+});
+
+  
+    // Crear hoja
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement("img");
+    star.src = "img/pluma.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size =  20+ Math.random() * 20;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+
+
+//mira si vista esta activada o no
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const vistaLink = document.getElementById('link-vista'); // el <a id="link-vista" href="vista.html">
+    const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+    if (!vistaDesbloqueada) {
+      vistaLink.style.pointerEvents = 'none';
+      vistaLink.style.opacity = '0.5';
+      vistaLink.classList.add('bloqueado');
+      vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+    } else {
+      vistaLink.style.pointerEvents = 'auto';
+      vistaLink.style.opacity = '1';
+      vistaLink.classList.remove('bloqueado');
+      vistaLink.removeAttribute('title');
+    }
+  });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidos = ['tacto', 'olfato', 'oido', 'gusto', 'vista'];
+  const vistaLink = document.getElementById('link-vista');
+  const inputBox = document.getElementById('inputBox');
+  const iconBtn = document.getElementById('iconBtn');
+
+  const listaResultados = document.createElement("ul");
+  listaResultados.id = "lista-resultados";
+  inputBox.parentNode.appendChild(listaResultados);
+
+  const visitados = JSON.parse(localStorage.getItem('sentidos')) || {};
+  const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+  // Bloquea o desbloquea el link a vista
+  if (!vistaDesbloqueada) {
+    vistaLink.style.pointerEvents = 'none';
+    vistaLink.style.opacity = '0.5';
+    vistaLink.classList.add('bloqueado');
+    vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+  } else {
+    vistaLink.style.pointerEvents = 'auto';
+    vistaLink.style.opacity = '1';
+    vistaLink.classList.remove('bloqueado');
+    vistaLink.removeAttribute('title');
+  }
+
+  iconBtn.addEventListener('click', () => {
+    inputBox.classList.toggle('show');
+    if (inputBox.classList.contains('show')) {
+      inputBox.focus();
+    }
+  });
+
+  inputBox.addEventListener("input", () => {
+    const termino = inputBox.value.toLowerCase().trim();
+    listaResultados.innerHTML = "";
+
+    if (!termino) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    const resultados = sentidos.filter(s => {
+      if (s === 'vista' && !vistaDesbloqueada) return false;
+      return s.includes(termino);
+    });
+
+    if (termino.includes("vista") && !vistaDesbloqueada) {
+      resultados.push("vista");
+    }
+
+    if (resultados.length === 0) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    resultados.forEach(sentido => {
+      const li = document.createElement("li");
+      li.textContent = sentido.charAt(0).toUpperCase() + sentido.slice(1);
+      li.classList.add("opcion-buscador");
+
+      if (sentido === "vista" && !vistaDesbloqueada) {
+        li.classList.add("bloqueado");
+      } else {
+        li.addEventListener("click", () => {
+          window.location.href = sentido + ".html";
+        });
+      }
+
+      listaResultados.appendChild(li);
+    });
+
+    listaResultados.style.display = "block";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!inputBox.contains(e.target) && !listaResultados.contains(e.target)) {
+      listaResultados.innerHTML = "";
+      listaResultados.style.display = "none";
+    }
+  });
+});
+
+
+
+//footer
+
+//Formulario
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recargar la página
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'  // Para evitar problemas CORS con Apps Script
+    }).then(() => {
+      status.style.color = '#ff8787';
+      status.textContent = '¡Mensaje enviado con éxito!';
+      form.reset();
+    }).catch((error) => {
+      status.style.color = '#ff8787';
+      status.textContent = 'Hubo un error al enviar el mensaje.';
+      console.error('Error:', error);
+    });
+  });
+
+  
+
+
+//politicas
+
+ document.querySelectorAll('a[data-my-modal]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = link.getAttribute('data-my-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'block';
+    });
+  });
+
+  document.querySelectorAll('.custom-modal .myClose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.custom-modal').style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('custom-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  //carrusel
+
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+
+  function moveSlide(direction) {
+    const totalItems = carousel.children.length;
+    index = (index + direction + totalItems) % totalItems;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // carta con pista
+
+  const container = document.getElementById('envelopeContainer');
+    container.addEventListener('click', () => {
+      container.classList.toggle('open');
+    });
+
+
+//pista peluda
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+
+let isScratched = false;    // Si ya raspaste la textura
+let repairTimeout = null;   // Timer para la reparación
+let lastCheck = 0;          // Para limitar chequeo frecuencia
+
+function resizeCanvas() {
+  const container = canvas.parentElement;
+  canvas.width = container.offsetWidth;
+  canvas.height = container.offsetHeight;
+  loadImage();
+  canvas.style.opacity = 1; // Opacidad inicial completa
+  isScratched = false;
+  if (repairTimeout) clearTimeout(repairTimeout);
+}
+
+function loadImage() {
+  const img = new Image();
+  img.src = "img/pelaje-rosa.png"; // tu textura peluche
+  img.onload = () => {
+    ctx.globalCompositeOperation = "source-over";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  };
+}
+
+window.addEventListener("resize", resizeCanvas);
+window.addEventListener("load", resizeCanvas);
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (e.touches ? e.touches[0].clientX : e.clientX) - rect.left,
+    y: (e.touches ? e.touches[0].clientY : e.clientY) - rect.top,
+  };
+}
+
+function scratch(e) {
+  e.preventDefault();
+  if (isScratched) return; // Ya raspaste, no raspar más
+
+  const pos = getPos(e);
+  ctx.globalCompositeOperation = "destination-out";
+
+  // Borra un círculo pequeño solo donde está el cursor para raspado gradual
+  ctx.beginPath();
+  ctx.arc(pos.x, pos.y, 30, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Limitar frecuencia de chequeo para no hacerlo en cada pixel
+  if (Date.now() - lastCheck > 200) {
+    lastCheck = Date.now();
+    checkIfClear();
+  }
+}
+
+function checkIfClear() {
+  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let transparentPixels = 0;
+  for (let i = 3; i < pixels.data.length; i += 4) {
+    if (pixels.data[i] === 0) transparentPixels++;
+  }
+  const percent = (transparentPixels / (canvas.width * canvas.height)) * 100;
+
+  if (percent > 50 && !isScratched) {
+    isScratched = true;
+
+    // Transición suave para desaparecer la textura
+    canvas.style.transition = "opacity 0.5s ease";
+    canvas.style.opacity = 0;
+
+    // Después de 20 segundos, comenzamos a reparar la textura (opacidad de 0 a 1)
+    repairTimeout = setTimeout(() => {
+      fadeInCanvas();
+    }, 5000);
+  }
+}
+
+function fadeInCanvas() {
+  let opacity = 0;
+  const fadeDuration = 5000; // 3 segundos para "reparar"
+  const startTime = performance.now();
+
+  function animate(time) {
+    let elapsed = time - startTime;
+    opacity = Math.min(elapsed / fadeDuration, 1);
+    canvas.style.opacity = opacity;
+
+    if (opacity < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // Cargar la imagen nuevamente y permitir raspar otra vez
+      loadImage();
+      isScratched = false;
+      canvas.style.transition = ""; // Quitamos la transición para futuras raspaditas
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+canvas.addEventListener("mousemove", scratch);
+canvas.addEventListener("touchmove", scratch);
+
+
+</script>
+</body>
+</html>

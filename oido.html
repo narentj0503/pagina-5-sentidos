@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/2m.png" type="image/png">
+  <title>Oído</title>
+<style>
+
+    
+    body {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    /* Mensaje arriba*/
+
+ #welcom {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+  background-color: #eec6ff;
+}
+
+#welcom p {
+  color:#9b78bb ;
+  font-size: 16px;
+  margin: 0; 
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+}
+
+
+/*navegador con buscador*/
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgb(255, 255, 255);
+  height: 70px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 200px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  width: 400px; 
+  border: 1px solid#9b78bb; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  caret-color: #9b78bb;
+  color: #333;
+  opacity: 1; 
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+
+.search-box:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-box:active {
+  border: 1px solid #9b78bb !important;
+  outline: none; 
+}
+
+
+.lupa-btn {
+  background: none;
+  border:#ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  color: #9b78bb;
+}
+
+
+#iconBtn {
+  background: none;   
+  border: none;        
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#9b78bb;      
+}
+
+#iconBtn svg {
+  stroke: #9b78bb;     
+}
+
+/**/
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.imagen-png {
+  height: 60px;
+  width: auto;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right img {
+  width: 24px;
+  margin-left: 15px;
+  border-radius: 30px;
+}
+
+  #lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid #9b78bb;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px#9b78bb;
+  }
+
+  .opcion-buscador {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+  }
+
+  .opcion-buscador:hover {
+    background-color:#40044688;
+  }
+
+  .opcion-buscador.bloqueado {
+    cursor: not-allowed;
+  }
+/* Estilo placeholder */
+.search-box::placeholder {
+  color: #9b78bb;
+  font-style: italic;
+}
+
+
+
+/* nav de los sentidos*/
+
+    h1 {
+      color: rgb(0, 0, 0);
+      font-style: italic;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
+.navbarr {
+  background-color: #e2adf8;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 6px;
+}
+
+.navbarr ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2px;
+}
+
+.navbarr a {
+  text-decoration: none;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 8px 50px; /* Añade espacio alrededor del texto */
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+.navbarr a:hover {
+  color: #ab4cff;
+  background-color:#9b78bb59;
+}
+
+
+
+/*Mensaje final*/
+    #mensajeFinal{
+      margin: 0;
+      padding: 0;
+    
+      background-image: url('img/azul.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      height: 400px;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; 
+    }
+
+#mensajeFinal p {
+  margin: 0;          
+  padding: 0;         
+  line-height: 1.4;   
+
+}
+
+
+
+  /*Footer*/
+footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  background-image: url('img/nubem.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 100px;
+  top: 0;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura deseada para la nube */
+  background-image: url('img/nube.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer contenido encima de la nube */
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 5%;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+
+.footer-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#logo_footer{
+      width: 200px;
+      height: 200px;
+      object-fit: cover; 
+      margin-right: 250px;
+}
+
+.footer-center {
+  max-width: 400px;
+  flex: 1 1 300px;
+  margin-right: 150px;
+}
+
+.footer-center h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color:#9b78bb;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+button[type="submit"] {
+  background-color: #9b78bb;  /* color original */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #d97aff; /* color un poco más claro cuando está encima */
+}
+
+button[type="submit"]:active {
+  background-color: #d97aff; /* color más oscuro al hacer click */
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid#9b78bb!important;
+  outline: none; 
+  cursor: pointer;
+  color:#9b78bb;
+}
+
+.newsletter-form button {
+  padding: 10px;
+  font-family: "Cormorant Garamond", serif;
+  background:#9b78bb;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  border: 1px solid #9b78bb !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.footer-links {
+  flex: 1 1 300px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #9b78bb;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: auto;
+  }
+  .custom-modal-content {
+    background-color: white;
+    color: #000000; /* Asegura que el texto sea negro */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+   .custom-modal-content p{
+    color: #000000; /* Asegura que el texto sea negro */
+    font-size: 20px;
+   }
+   .custom-modal-content h1{
+    color:  #9b78bb; /* Asegura que el texto sea negro */
+   }
+
+
+.modal-content-faqs {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-shipping{
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-policy {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-terms {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+  .myClose-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .footer-links a {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+#divenblanco{
+   background:  #eec6ff;
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 70px;
+}
+
+.footer-bottom {
+  position: relative;
+  padding: 30px 5%;
+  background:#e2adf8;
+  margin-top: 3px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+}
+
+
+.nube-superpuesta {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: -40px; /* Ajusta cuánto se superpone sobre el fondo azul */
+}
+
+.nube-superpuesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; 
+  user-select: none;
+}
+/*inicio olfato*/
+
+#section1 {
+  position: relative;
+  height: 450px; /* o lo que necesites */
+  overflow: visible;
+  height: 450px;
+}
+
+/* Capa 1 - Imagen de fondo */
+.background-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Capa 2 - Div blanco con sombra */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  background-color:#ffffff;
+  padding: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 12px;
+  width: 50%;
+  color: #e2adf8;
+  border: 3px dashed #e2adf8; /* Cambia a dotted si prefieres puntos */
+  border-radius: 30px;       /* Opcional, para esquinas redondeadas */
+}
+
+.overlay::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.overlay::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/* Capa 3 - Párrafo */
+.overlay p {
+  font-size: 18px;
+  color:#9b78bb;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.overlay h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color:#9945a4;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+  margin-top: 0%;
+}
+
+    .overlay:hover {
+      box-shadow: 0 0 20px #9b78bb;
+    }
+
+
+/* Stickers */
+.sticker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* para que mantenga proporción si quieres */
+  z-index: 10; /* siempre encima */
+  cursor: pointer; /* opcional: cambia cursor si quieres que sean interactivos */
+}
+
+#minidiv{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #e2adf8;
+}
+
+/*carrusel de curiosidades*/
+#oido-curiosidades {
+  background-image: url('img/fondom.png');
+  background-size: 400% 400%;
+  animation: aireFluyendo 150s ease infinite;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+@keyframes aireFluyendo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+  .carousel-item {
+    min-width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .overlay1 {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 1rem;
+   margin-top: 20%;
+   width: 300px;
+   margin-left: 22%;
+   height: 700px;
+  }
+
+  .carousel-item p {
+    color: #000000;
+    font-size: 20px;
+  }
+    .carousel-item h1 {
+    color: #000000;
+    font-size: 25px;
+  }
+
+
+  .bg1 { background-image: url('img/viejito.png'); }
+  .bg2 { background-image: url('img/elefante.png'); }
+  .bg3 { background-image: url('img/buho.png'); }
+  .bg4 { background-image: url('img/orejaa.png'); }
+  .bg5 { background-image: url('img/lluvia.png'); }
+  .bg6 { background-image: url('img/serpiente.png'); }
+  .bg7 { background-image: url('img/perrito.png'); }
+  .bg8 { background-image: url('img/hueso.png'); }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+ .flecha-morada{
+  color: #9945a4;
+  background-color: #9945a4;
+ } 
+
+
+
+  #minidiv2{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #e2adf8;
+}
+
+
+/* spotify canciones*/
+.spotify-carousel {
+  padding: 2rem;
+  background-image: url('img/fondomoo.jpg');
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  height: 400px;
+}
+
+.spotify-carousel h2 {
+  font-size: 25px;
+  margin-bottom: 1rem;
+  color:  #9b78bb;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.carousel-track {
+  display: flex;
+  width: calc(200px * 16); /* 8 originales + 8 duplicados */
+  animation: scroll 40s linear infinite;
+}
+
+.carousel-track a {
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 0 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.carousel-track a:hover {
+  box-shadow: 0 0 20px #ffffff;
+}
+
+.carousel-track img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Animación del loop infinito */
+@keyframes scroll {
+  0% {
+    transform: translateX(-1600px); /* empieza desplazado hacia la izquierda */
+  }
+  100% {
+    transform: translateX(0); /* vuelve al punto inicial = se mueve a la derecha */
+  }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-track a {
+    width: 150px;
+  }
+
+  .carousel-track {
+    width: calc(150px * 16);
+    animation: scrollMobile 40s linear infinite;
+  }
+
+@keyframes scrollMobile {
+  0% {
+    transform: translateX(-1200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+}
+
+.titilar {
+  margin-top: 10px;
+  animation: titilar 3s infinite;
+  color:  #9b78bb; /* o el color que desees */
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes titilar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+/*pista*/
+
+.equalizer-section {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  height: 200px;
+  background: #f4daff;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.bar {
+  width: 20px;
+  background-color: #9b78bb;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+  border-radius: 4px;
+}
+
+.bar:hover {
+  transform: scaleY(1.1);
+  box-shadow: 0 0 10px  #41044667;
+}
+
+.bar span {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: black;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.bar:hover span {
+  opacity: 1;
+  transform: scaleY(1.1);
+  box-shadow: 0 0 10px #400446;
+}
+
+.clickable-bar {
+  background-color: #9b78bb;
+}
+
+#divacio{
+  height: 30px;
+  background: #ffffff;
+  padding-top: 100px;
+}
+#divacio p{
+ color: #9b78bb;
+ font-size: 25px;
+ font-family: "Cormorant Garamond";
+ margin-top: 0px;
+ margin-bottom: 0;
+}
+#divacioo{
+  height: 50px;
+  background:#f4daff;
+  padding-top: 100px;
+  font-family: "Cormorant Garamond";
+}
+#divacioo p{
+ color: #9b78bb;
+ font-size: 25px;
+ font-family: "Cormorant Garamond";
+ margin-top: 0%;
+}
+
+.btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #9b78bb;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color: rgb(113, 42, 131);
+}
+
+/* ==========================
+   MENSAJE: Vista Desbloqueada
+========================== */
+#mensaje-vista-desbloqueada {
+  animation: titilar 1.5s infinite ease-in-out;
+  background-color: #ffffff67; 
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(183, 0, 255, 0.25);
+  color: #9b78bb;
+  cursor: default;
+  display: none;
+  font-size: 25px;
+  font-family: "Cormorant Garamond", serif;
+  left: 50%;
+  padding: 20px 35px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  z-index: 9999;
+}
+
+#mensaje-vista-desbloqueada.mostrar {
+  display: block;
+}
+
+/* Animación de titileo suave */
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+/* ==========================
+   MENSAJE: Scroll Obligatorio
+========================== */
+.mensaje-scroll {
+  animation: parpadeo 1s infinite;
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  display: none;
+  font-size: 1.2em;
+  left: 50%;
+  padding: 20px 30px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* Animación de parpadeo */
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+
+  audio {
+    display: none;
+  }
+  
+</style>
+
+</head>
+<body>
+<audio id="musica" autoplay loop muted>
+  <source src="Amo.mp3" type="audio/mpeg">
+</audio>
+
+  <!-- Frase inicial -->
+
+    <section id="welcom">
+      <p >Amor en todos los sentidos...</p>
+    </section>
+   
+
+  <!-- nav con buscador -->
+
+<nav>
+<div class="nav-left"> 
+  <div class="search-wrapper">
+    <button class="icon-btn" id="iconBtn" aria-label="Buscar">
+      <!-- Lupa SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <input type="text" placeholder="Buscar sentido..." class="search-box" id="inputBox" class="input-buscador" >
+  </div>
+</div>
+
+
+<div class="nav-center">
+  <section class="hero">
+   <a href="index.html"><img src="img/4m.png" alt="Imagen decorativa" class="imagen-png"></a> 
+  </section>
+</div>
+
+  <div class="nav-right social-icons">
+    <a href="https://www.instagram.com/accounts/onetap/?next=%2F&hl=es-la" target="_blank" rel="noopener noreferrer"><img src="img/instagramm.jpg" alt="I" /></a>
+    <a href="https://co.pinterest.com/gnarent/_profile/" target="_blank" rel="noopener noreferrer"><img src="img/pinterestm.jpg" alt="P" /></a>
+    <a href="https://www.facebook.com/share/15G8ndSGjp/" target="_blank" rel="noopener noreferrer"><img src="img/facebookm.jpg" alt="F" /></a>
+    <a href="https://www.tiktok.com/@njgq18?_t=ZS-8wWTbLR7kRd&_r=1" target="_blank" rel="noopener noreferrer"><img src="img/tiktokm.jpg" alt="T" /></a>
+  </div>
+</nav>
+
+
+
+ <!-- nav de sentidos -->
+  
+<nav class="navbarr"> 
+  <ul>
+    <li><a href="olfato.html" data-opcion="olfato">Olfato</a></li>
+    <li><a href="oido.html" data-opcion="oido">Oído</a></li>
+    <li><a href="gusto.html" data-opcion="gusto">Gusto</a></li>
+    <li><a href="tacto.html" data-opcion="tacto">Tacto</a></li>
+    <li><a href="vista.html" data-opcion="vista" id="link-vista">Vista</a></li>
+  </ul>
+</nav>
+  <!-- introduccion -->
+<section id="section1">
+  <img src="img/fondomorado.png" alt="Fondo" class="background-img" />
+  <div class="overlay">
+<h1 style="color: #9b78bb;">¿Para qué sirve el oído?</h1>
+<p> El oído es el sentido que nos conecta con el mundo a través del sonido. Nos permite captar desde una melodía hasta un susurro, desde las voces cercanas hasta los ruidos más sutiles del entorno. Gracias a él, podemos comunicarnos, disfrutar de la música y reaccionar ante los estímulos auditivos. Pero su función no termina ahí: también es esencial para mantener el equilibrio.</p>
+
+<p>El proceso es fascinante. Las vibraciones del sonido entran por el oído externo, hacen vibrar el tímpano y viajan a través de tres pequeños huesecillos: el martillo, el yunque y el estribo. Estas vibraciones llegan hasta la cóclea, donde las células ciliadas las transforman en impulsos eléctricos que el cerebro interpreta como sonidos.</p>
+
+<p>Escuchar tu voz, incluso en un susurro, es como una melodía que no me canso de repetir.
+Aquí descubrirás algunas curiosidades del sentido del oído. Si prestas atención, una pista muy bajita te dirá hacia dónde ir…</p>
+
+  </div>
+
+  <!-- Stickers -->
+  <img src="img/audiculares.png" alt="Sticker 1" class="sticker" style="top: 40px; left: 290px;">
+  <img src="img/audifonos.png" alt="Sticker 2" class="sticker" style="top: 370px; left: 1000px;">
+</section>
+<div id="minidiv"></div>
+
+
+ <!-- curiosidades -->
+<section id="oido-curiosidades" style="padding: 2rem; border-radius: 1rem;">
+  <h2 style="text-align: center; color: #9b78bb;">Curiosidades del oído</h2>
+
+  <div style="position: relative; max-width: 600px; margin: auto; overflow: hidden; border-radius: 1rem;">
+    <div id="carousel" style="display: flex; transition: transform 0.5s ease;">
+      <div class="carousel-item bg1">
+        <div class="overlay1">
+          <h1><strong>El oído humano puede detectar sonidos entre 20 Hz y 20,000 Hz</strong></h1>
+          <p>aunque este rango disminuye con la edad..A esa perdida auditiva se le llama presbiacusia, y afecta especialmente los sonidos agudos.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item bg2">
+        <div class="overlay1">
+          <h1> <strong>Los elefantes pueden comunicarse con infrasonidos</strong> </h1>
+          <p>sonidos tan graves que los humanos no los perciben.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg3">
+        <div class="overlay1">
+          <h1> <strong>Los búhos tienen un oído asimétrico</strong> </h1>
+          <p>lo que les permite detectar con precisión la dirección y altura del sonido.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg4">
+        <div class="overlay1">
+          <h1><strong> La forma de la oreja externa es única en cada persona</strong> </h1>
+           <p>como una huella digital sonora.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg5">
+        <div class="overlay1">
+          <h1> <strong> El oído puede detectar cambios sutiles en la presión del aire</strong> </h1>
+          <p>lo que ayuda a algunas personas a "sentir" cuando va a llover.</p>
+        </div>
+      </div>
+        <div class="carousel-item bg6">
+        <div class="overlay1">
+          <h1> <strong>Las serpientes no tienen orejas externas</strong></h1>
+          <p>pero sienten las vibraciones del suelo con la mandíbula.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg7">
+        <div class="overlay1">
+          <h1> <strong>Los perros oyen sonidos hasta los 65,000 Hz</strong></h1>
+          <p>más de tres veces el límite superior del oído humano.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg8">
+        <div class="overlay1">
+          <h1> <strong>El hueso más pequeño del cuerpo humano está en el oído:</strong></h1>
+          <p>el estribo, que mide unos 2.5 mm.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="moveSlide(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-morada">⬅</button>
+    <button onclick="moveSlide(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-morada">➡</button>
+  </div>
+</section>
+
+<div id="minidiv"></div>
+
+<!-- CARRUSEL DE CANCIONES DEDICADAS -->
+<section class="spotify-carousel">
+  <h2>Algunas de las que te dediqué</h2>
+  <div class="carousel">
+    <div class="carousel-track">
+      <!-- Canciones (duplicadas para efecto continuo) -->
+      <!-- PRIMER BLOQUE -->
+      <a href="https://open.spotify.com/intl-es/track/2jF1EOUMsIMMHIB4ktji6W?si=54105741be7a4b88" target="_blank">
+        <img src="img/cancion1.png" alt="Canción 1">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/0SzvmWfOhoxZVGrmvb56YL?si=276edbc6901446fc" target="_blank">
+        <img src="img/cancion2.png" alt="Canción 2">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/0vkcyC4KUteZGNYAzTLSv0?si=0f76c741a46d4bd3" target="_blank">
+        <img src="img/cancion3.png" alt="Canción 3">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/7LFeZYHcY5yEjsd8ExRyZf?si=59e2606370364b5d" target="_blank">
+        <img src="img/cancion4.png" alt="Canción 4">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/21B4gaTWnTkuSh77iWEXdS?si=fc69273a266b491b" target="_blank">
+        <img src="img/cancion5.png" alt="Canción 5">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/28t8Ow6Bc8ULVPAeiJqXAj?si=47637ecbb69e4cc0" target="_blank">
+        <img src="img/cancion6.png" alt="Canción 6">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/44AyOl4qVkzS48vBsbNXaC?si=e5ee6120e0864eea" target="_blank">
+        <img src="img/cancion7.png" alt="Canción 7">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/7mUFcQWYwoRxRa5ZfI2mHG?si=cd96a0df233c4441" target="_blank">
+        <img src="img/cancion8.png" alt="Canción 8">
+      </a>
+
+      <!-- DUPLICADO PARA LOOP INFINITO -->
+      <a href="https://open.spotify.com/intl-es/track/2jF1EOUMsIMMHIB4ktji6W?si=54105741be7a4b88" target="_blank">
+        <img src="img/cancion1.png" alt="Canción 1">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/0SzvmWfOhoxZVGrmvb56YL?si=276edbc6901446fc" target="_blank">
+        <img src="img/cancion2.png" alt="Canción 2">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/0vkcyC4KUteZGNYAzTLSv0?si=0f76c741a46d4bd3" target="_blank">
+        <img src="img/cancion3.png" alt="Canción 3">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/7LFeZYHcY5yEjsd8ExRyZf?si=59e2606370364b5d" target="_blank">
+        <img src="img/cancion4.png" alt="Canción 4">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/21B4gaTWnTkuSh77iWEXdS?si=fc69273a266b491b" target="_blank">
+        <img src="img/cancion5.png" alt="Canción 5">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/28t8Ow6Bc8ULVPAeiJqXAj?si=47637ecbb69e4cc0" target="_blank">
+        <img src="img/cancion6.png" alt="Canción 6">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/44AyOl4qVkzS48vBsbNXaC?si=e5ee6120e0864eea" target="_blank">
+        <img src="img/cancion7.png" alt="Canción 7">
+      </a>
+      <a href="https://open.spotify.com/intl-es/track/7mUFcQWYwoRxRa5ZfI2mHG?si=cd96a0df233c4441" target="_blank">
+        <img src="img/cancion8.png" alt="Canción 8">
+      </a>
+
+    </div>
+  </div>
+  
+ <p class="titilar">Haz click para escuchar</p>
+</section>
+<div id="minidiv"></div>
+
+<div id="divacioo">
+<p>halla la pista...</p>
+</div>
+
+
+<!-- pista -->
+
+<section class="equalizer-section">
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 75%"><span>No</span></div>
+  <div class="bar" style="height: 50%"><span>No</span></div>
+  <div class="bar" style="height: 40%"><span>No</span></div>
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 90%"><span>No</span></div>
+  <div class="bar" style="height: 75%"><span>No</span></div>
+  <div class="bar" style="height: 50%"><span>No</span></div>
+  <div class="bar" style="height: 40%"><span>No</span></div>
+  <div class="bar clickable-bar" target="_blank" style="height: 15%" onclick="window.location.href='cancion.html'"><span>mm</span></div>
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 90%"><span>No</span></div>
+  <div class="bar" style="height: 75%"><span>No</span></div>
+  <div class="bar" style="height: 50%"><span>No</span></div>
+  <div class="bar" style="height: 40%"><span>No</span></div>
+  <div class="bar" style="height: 20%"><span>No</span></div>
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+    <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 90%"><span>No</span></div>
+  <div class="bar" style="height: 75%"><span>No</span></div>
+  <div class="bar" style="height: 50%"><span>No</span></div>
+  <div class="bar" style="height: 40%"><span>No</span></div>
+  <div class="bar" style="height: 20%"><span>No</span></div>
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 90%"><span>No</span></div>
+  <div class="bar" style="height: 75%"><span>No</span></div>
+  <div class="bar" style="height: 50%"><span>No</span></div>
+  <div class="bar" style="height: 40%"><span>No</span></div>
+  <div class="bar" style="height: 20%"><span>No</span></div>
+  <div class="bar" style="height: 35%"><span>No</span></div>
+  <div class="bar" style="height: 65%"><span>No</span></div>
+  <div class="bar" style="height: 80%"><span>No</span></div>
+  <div class="bar" style="height: 90%"><span>No</span></div>
+</section>
+
+<div id="minidiv"></div>
+<div id="divacio">
+
+ <em> <p> "Y entre todos los sonidos del mundo, mi favorito siempre ha sido el de tu voz".</p></em>
+</div>
+
+  <!-- footer , mensaje final-->
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-left">
+      <img src="img/1m.png" alt="logo" id="logo_footer">
+    </div>
+
+<div class="footer-center">
+  <h3>Comunícate conmigo</h3>
+  <form id="contact-form" class="newsletter-form" action="https://script.google.com/macros/s/AKfycbyCQedUeIBqSWEVzoiIj5fGHQ3AR7t4_L8DrLVSqk2xui4VN8bPlpN62ouh6eELR5HB/exec" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje o comentario" rows="4" style="padding: 10px; border-radius: 20px; border: 1px solid #9b78bb; outline: none;" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="form-status" style="margin-top:10px; color: #ffffff;"></p>
+</div>
+
+ <div class="footer-links">
+  <div>
+    <h4>Info</h4>
+    <ul>
+      <li><a href="#" data-my-modal="myModal1">FAQs</a></li>
+      <li><a href="#" data-my-modal="myModal2">Shipping Policy</a></li>
+      <li><a href="#" data-my-modal="myModal3">Refund Policy</a></li>
+      <li><a href="#" data-my-modal="myModal4">Terms of Service</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modales personalizados -->
+<div id="myModal1" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-faqs">
+  <div class="modal-content-faqs">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>FAQs</h1></center> 
+
+<h2>1. ¿Qué tipo de página web es esta?</h2>
+<p>Es La Página Narent´s Senses™. Aquí no solo navegas: exploras, te ríes, recuerdas cosas de nosotros y... ¡buscas regalos escondidos como si fueras Marlin buscando a Nemo y a Dory!</p>
+
+<h2>2. ¿Los sentidos? ¿Así como vista, olfato y esas cosas?</h2>
+<p>Exacto. Cada sección está dedicada a uno de los sentidos: vista, oído, olfato, gusto y tacto. En cada uno encontrarás curiosidades, detalles nuestros y, si usas bien tus sentidos... una sorpresa escondida.</p>
+
+<h2>3. ¿O sea que tengo que buscar cosas? ¿Esto es una misión secreta?</h2>
+<p>Totalmente. Tu misión, si decides aceptarla (y debes), es encontrar el regalo escondido en cada sentido. Consejo: no hagas trampa.</p>
+
+<h2>4. ¿Qué pasa si me pierdo o no encuentro el regalo?</h2>
+<p>Puedes decirme. Te daré pistas. O haré como que no sé nada y me reiré mientras lo intentas.</p>
+
+<h2>5. ¿Esto es mejor que Netflix y Disney+?</h2>
+<p>¡Por supuesto! ¿Estas apps te dan un regalo escondido? No, no lo creo.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-shipping">
+  <div class="modal-content-shipping">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Shipping Policy</h1></center>
+<h2>¿Cómo llega tu regalo?</h2>
+<p>Cada regalo está empaquetado con todo el cariño del mundo y un toque extra de magia invisible para que llegue perfecto hasta tus manos.</p>
+
+<h2>¿Cuánto tarda en llegar?</h2>
+<p>Puede tardar desde “Ya casi” hasta “Cuando se pueda”, dependiendo de dónde estemos y del clima.</p>
+
+<h2>¿Y si se pierde?</h2>
+<p>Si eso pasa, te prometo que lo busco por todos lados, hasta debajo de la cama.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal3" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-policy">
+  <div class="modal-content-policy">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>Refund Policy</h1></center> 
+    <p>Aquí no hay reembolsos porque este regalo está hecho con puro amor y cero devoluciones.Así que, ¡disfrútalo y no pienses en devolverlo!.</p>
+
+    <p>Consejo amistoso: Disfruta el regalo.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal4" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-terms">
+  <div class="modal-content-terms">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Terms of Service</h1></center>
+<p>1.Este regalo es exclusivo y personalizado, por lo que no puede ser compartido ni prestado… a menos que quieras ganarte una multa.</p>
+
+<p>2.Cualquier intento de abrir el regalo antes de tiempo resultará en un sermón y posiblemente en un baile ridículo para distraerte.</p>
+
+<p>3.La sonrisa del receptor es obligatoria y, si no se cumple, Tendrá que ofrecer una sesión extra de mimos para corregirlo.</p>
+
+<p>4.Este regalo no es reembolsable, intercambiable ni transferible, pero sí es 100% garantizado para crear momentos memorables.</p>
+
+<p>5.Cualquier uso indebido del regalo será sancionado.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+</div><!-- cierra Modales personalizados -->
+</footer>
+<div id="divenblanco">
+
+</div>
+ <div class="footer-bottom">
+      <p>Narent's Senses © 2025</p>
+    </div>
+<div class="contenedor-volver">
+  <a href="index.html" class="btn-flotante" id="btn-volver" title="Volver a oído">⬅</a>
+
+</div>
+
+  <div id="mensaje-vista-desbloqueada">
+    ¡Has desbloqueado el sentido de la vista!
+  </div>
+
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidoActual = 'oido'; // Cambia según la página
+  const totalSentidos = 4;
+  const mensaje = document.getElementById('mensaje-vista-desbloqueada');
+
+  // Marcar sentido actual
+  let sentidos = JSON.parse(localStorage.getItem('sentidos')) || {};
+  sentidos[sentidoActual] = true;
+  localStorage.setItem('sentidos', JSON.stringify(sentidos));
+
+  // Verificar si ya se mostró el mensaje
+  const mensajeMostrado = localStorage.getItem('mensajeMostrado') === 'true';
+  const visitadosCount = Object.values(sentidos).filter(Boolean).length;
+
+  if (visitadosCount === totalSentidos && mensaje && !mensajeMostrado) {
+    const mostrarSiScrollAlFinal = () => {
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10)) {
+        mensaje.classList.add('mostrar');
+        localStorage.setItem('mensajeMostrado', 'true');
+      }
+    };
+
+    window.addEventListener('scroll', mostrarSiScrollAlFinal);
+
+    // Cerrar al hacer clic fuera del mensaje
+    document.addEventListener('click', (e) => {
+      if (mensaje.classList.contains('mostrar') && !mensaje.contains(e.target)) {
+        mensaje.classList.remove('mostrar');
+      }
+    });
+  }
+});
+
+
+    // Crear hoja
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement("img");
+    star.src = "img/nota.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size = 15 + Math.random() * 15;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+
+
+//mira si vista esta activada o no
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const vistaLink = document.getElementById('link-vista'); // el <a id="link-vista" href="vista.html">
+    const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+    if (!vistaDesbloqueada) {
+      vistaLink.style.pointerEvents = 'none';
+      vistaLink.style.opacity = '0.5';
+      vistaLink.classList.add('bloqueado');
+      vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+    } else {
+      vistaLink.style.pointerEvents = 'auto';
+      vistaLink.style.opacity = '1';
+      vistaLink.classList.remove('bloqueado');
+      vistaLink.removeAttribute('title');
+    }
+  });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidos = ['tacto', 'olfato', 'oido', 'gusto', 'vista'];
+  const vistaLink = document.getElementById('link-vista');
+  const inputBox = document.getElementById('inputBox');
+  const iconBtn = document.getElementById('iconBtn');
+
+  const listaResultados = document.createElement("ul");
+  listaResultados.id = "lista-resultados";
+  inputBox.parentNode.appendChild(listaResultados);
+
+  const visitados = JSON.parse(localStorage.getItem('sentidos')) || {};
+  const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+  // Bloquea o desbloquea el link a vista
+  if (!vistaDesbloqueada) {
+    vistaLink.style.pointerEvents = 'none';
+    vistaLink.style.opacity = '0.5';
+    vistaLink.classList.add('bloqueado');
+    vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+  } else {
+    vistaLink.style.pointerEvents = 'auto';
+    vistaLink.style.opacity = '1';
+    vistaLink.classList.remove('bloqueado');
+    vistaLink.removeAttribute('title');
+  }
+
+  iconBtn.addEventListener('click', () => {
+    inputBox.classList.toggle('show');
+    if (inputBox.classList.contains('show')) {
+      inputBox.focus();
+    }
+  });
+
+  inputBox.addEventListener("input", () => {
+    const termino = inputBox.value.toLowerCase().trim();
+    listaResultados.innerHTML = "";
+
+    if (!termino) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    const resultados = sentidos.filter(s => {
+      if (s === 'vista' && !vistaDesbloqueada) return false;
+      return s.includes(termino);
+    });
+
+    if (termino.includes("vista") && !vistaDesbloqueada) {
+      resultados.push("vista");
+    }
+
+    if (resultados.length === 0) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    resultados.forEach(sentido => {
+      const li = document.createElement("li");
+      li.textContent = sentido.charAt(0).toUpperCase() + sentido.slice(1);
+      li.classList.add("opcion-buscador");
+
+      if (sentido === "vista" && !vistaDesbloqueada) {
+        li.classList.add("bloqueado");
+      } else {
+        li.addEventListener("click", () => {
+          window.location.href = sentido + ".html";
+        });
+      }
+
+      listaResultados.appendChild(li);
+    });
+
+    listaResultados.style.display = "block";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!inputBox.contains(e.target) && !listaResultados.contains(e.target)) {
+      listaResultados.innerHTML = "";
+      listaResultados.style.display = "none";
+    }
+  });
+});
+
+
+
+//footer
+
+//Formulario
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recargar la página
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'  // Para evitar problemas CORS con Apps Script
+    }).then(() => {
+      status.style.color = 'purple';
+      status.textContent = '¡Mensaje enviado con éxito!';
+      form.reset();
+    }).catch((error) => {
+      status.style.color = 'purple';
+      status.textContent = 'Hubo un error al enviar el mensaje.';
+      console.error('Error:', error);
+    });
+  });
+
+  
+  
+
+//politicas
+
+ document.querySelectorAll('a[data-my-modal]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = link.getAttribute('data-my-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'block';
+    });
+  });
+
+  document.querySelectorAll('.custom-modal .myClose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.custom-modal').style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('custom-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  //carrusel
+
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+
+  function moveSlide(direction) {
+    const totalItems = carousel.children.length;
+    index = (index + direction + totalItems) % totalItems;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // carta con pista
+
+  const container = document.getElementById('envelopeContainer');
+    container.addEventListener('click', () => {
+      container.classList.toggle('open');
+    });
+
+
+//cancion
+
+  window.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById('musica');
+    setTimeout(() => {
+      audio.muted = false;
+      audio.play().catch(e => console.log("Autoplay bloqueado"));
+    }, 500); // medio segundo después de cargar
+  });
+
+
+</script>
+
+</body>
+</html>

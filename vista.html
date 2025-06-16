@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/2a.png" type="image/png">
+  <title>Vista</title>
+<style>
+
+    
+    body {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    html, body {
+  line-height: 1;
+}
+
+
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    /* Mensaje arriba*/
+
+ #welcom {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+  background-color:#fdffa1;
+}
+
+#welcom p {
+  color:#fbc742;
+  font-size: 16px;
+  margin: 0; 
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+}
+
+
+/*navegador con buscador*/
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgb(255, 255, 255);
+  height: 70px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 300px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  width: 400px; 
+  border: 1px solid#fbc742; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  caret-color: #fbc742;
+  color: #333;
+  opacity: 1; 
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+
+.search-box:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-box:active {
+  border: 1px solid#fbc742 !important;
+  outline: none; 
+}
+
+
+.lupa-btn {
+  background: none;
+  border:#ffffff;
+  font-size: 8000px;
+  cursor: pointer;
+  color: #fbc742;
+}
+
+
+#iconBtn {
+  background: none;   
+  border: none;        
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#eca949;      
+}
+
+#iconBtn svg {
+  stroke: #eca949; 
+}
+
+/**/
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin-left: -100px;
+}
+
+.imagen-png {
+  height: 60px;
+  width: auto;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right img {
+  width: 24px;
+  margin-left: 15px;
+  border-radius: 30px;
+}
+
+  #lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid #eca949;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px#eca949;
+  }
+
+  .opcion-buscador {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+  }
+
+  .opcion-buscador:hover {
+    background-color:#ffaf3eb4;
+  }
+
+  .opcion-buscador.bloqueado {
+    cursor: not-allowed;
+  }
+
+
+
+/* nav de los sentidos*/
+
+    h1 {
+      color: rgb(0, 0, 0);
+      font-style: italic;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
+
+.navbarr {
+  background-color:#fcff7c;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 6px;
+}
+
+.navbarr ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2px;
+}
+
+.navbarr a {
+  text-decoration: none;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 8px 50px; /* Añade espacio alrededor del texto */
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+.navbarr a:hover {
+  color: #ffa929;
+  background-color:#ffe23e77;
+}
+
+
+/*Mensaje final*/
+    #mensajeFinal{
+      margin: 0;
+      padding: 0;
+    
+      background-image: url('img/azul.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      height: 400px;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; 
+    }
+
+#mensajeFinal p {
+  margin: 0;          
+  padding: 0;         
+  line-height: 1.4;   
+
+}
+
+
+
+  /*Footer*/
+footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  background-image: url('img/nubeam.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 100px;
+  top: 20px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura deseada para la nube */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer contenido encima de la nube */
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 5%;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+
+.footer-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#logo_footer{
+      width: 200px;
+      height: 200px;
+      object-fit: cover; 
+      margin-right: 250px;
+}
+
+.footer-center {
+  max-width: 400px;
+  flex: 1 1 300px;
+  margin-right: 150px;
+}
+
+.footer-center h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color:#fbc742;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+button[type="submit"] {
+  background-color: #fbc742;  /* color original */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #eca949 /* color un poco más claro cuando está encima */
+}
+
+button[type="submit"]:active {
+  background-color: #ff9501; /* color más oscuro al hacer click */
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid#fbc742!important;
+  outline: none; 
+  cursor: pointer;
+  color:#fbc742;
+}
+
+.newsletter-form button {
+  padding: 10px;
+  font-family: "Cormorant Garamond", serif;
+  background:#fbc742;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  border: 1px solid #fbc742 !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.footer-links {
+  flex: 1 1 300px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #fbc742;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: auto;
+  }
+  .custom-modal-content {
+    background-color: white;
+    color: #000000; /* Asegura que el texto sea negro */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+   .custom-modal-content p{
+    color:#fbc742; /* Asegura que el texto sea negro */
+    font-size: 20px;
+   }
+   .custom-modal-content h1{
+    color:  #fbc742; /* Asegura que el texto sea negro */
+   }
+
+
+.modal-content-faqs {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-shipping{
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-policy {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-terms {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+  .myClose-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .footer-links a {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+#divenblanco{
+   background:  #fdffa1;
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 70px;
+}
+
+.footer-bottom {
+  position: relative;
+  padding: 30px 5%;
+  background:#fcff7c;
+  margin-top: 3px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+}
+
+
+.nube-superpuesta {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: -40px; /* Ajusta cuánto se superpone sobre el fondo azul */
+}
+
+.nube-superpuesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; 
+  user-select: none;
+}
+/*inicio olfato*/
+
+#section1 {
+  position: relative;
+  height: 450px; /* o lo que necesites */
+  overflow: visible;
+}
+
+/* Capa 1 - Imagen de fondo */
+.background-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 90%;
+}
+
+/* Capa 2 - Div blanco con sombra */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  background-color:#ffffff;
+  padding: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 12px;
+  width: 50%;
+  color: #fcff7c;
+  border: 3px dashed #fbc742; /* Cambia a dotted si prefieres puntos */
+  border-radius: 30px;       /* Opcional, para esquinas redondeadas */
+}
+
+.overlay::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.overlay::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/* Capa 3 - Párrafo */
+.overlay p {
+  font-size: 20px;
+  color:#ffb801;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.overlay h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color:#ffb801;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+  margin-top: 0%;
+}
+
+    .overlay:hover {
+      box-shadow: 0 0 20px #ff9d147c;
+    }
+
+
+/* Stickers */
+.sticker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* para que mantenga proporción si quieres */
+  z-index: 10; /* siempre encima */
+  cursor: pointer; /* opcional: cambia cursor si quieres que sean interactivos */
+}
+
+#minidiv{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #fcff7c;
+}
+
+/* carrusel de curiosidades */
+#vision-curiosidades {
+  background-image: url('img/fondoojos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 1rem;
+  position: relative; /* importante para posicionar manos absolutas dentro */
+  overflow: hidden; /* por si las manos sobresalen */
+  height: 700px;
+  margin-bottom: 0;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay1 {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 1rem;
+  margin-top: 20%;
+  width: 300px;
+  margin-left: 22%;
+}
+
+.carousel-item p {
+  color: #000000;
+  font-size: 20px;
+}
+
+.carousel-item h1 {
+  color: #000000;
+  font-size: 22px;
+}
+
+.bg1 { background-image: url('img/bombillo.png'); }
+.bg2 { background-image: url('img/camara.png'); }
+.bg3 { background-image: url('img/tv.png'); }
+.bg4 { background-image: url('img/cabra.png'); }
+.bg5 { background-image: url('img/arcoiris.png'); }
+.bg6 { background-image: url('img/aguila.png'); }
+.bg7 { background-image: url('img/calamar.png'); }
+.bg8 { background-image: url('img/loro.png'); }
+
+button:hover {
+  cursor: pointer;
+}
+
+.bg6 p{
+  margin-top: 10px;
+}
+.bg6 h1{
+  margin-top: 100px;
+}
+/* ------------------------- */
+/* Separador inferior */
+#minidiv2 {
+  margin-top: 0%;
+  height: 4px;
+  width: 100%;
+  background-color:#fcff7c;
+}
+
+
+
+/*pista*/
+
+.titilar {
+  margin-top: -10px;
+  animation: titilar 3s infinite;
+  color:  #eca949; /* o el color que desees */
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes titilar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+    
+.btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color:#fbc742;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color:#eca949 ;
+}
+.elrenegado{
+  height: 70px;
+  position: absolute;
+  margin-top: 35px;
+  z-index: 8888;
+  justify-content: center;
+  width: 100%;
+  color: #fbc742;
+  font-size: 25px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+/*pista*/
+
+#juego{
+  background-image: url('img/fondoamarillo.jpg');
+  background-size: cover;
+  background-position:top center;
+  background-repeat: no-repeat;
+  margin: 0px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #ffba39;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-gap: 15px;
+  justify-content: center;
+  box-sizing: border-box;
+
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  perspective: 600px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.card-front {
+background-color: #ffce2b;
+ border: 3px dashed #ffb700; /* Cambia a dotted si prefieres puntos */
+}
+
+.card-back {
+  transform: rotateY(180deg);
+   border: 3px double #ffb700; /* Cambia a dotted si prefieres puntos */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0);
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #ffb700;
+}
+
+
+.heart-link {
+  display: inline-block;
+  font-size: 30px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.card.matched {
+  animation: hideCard 0.6s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes hideCard {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+  .flecha-amarilla {
+    color: #fbc742;
+  }
+
+/*ojos*/
+
+    .section-eyes {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .eye {
+      position: absolute;
+      width: 300px;
+      height: 150px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pupil {
+      fill: #ffc64c;
+      transition: transform 0.2s ease;
+    }
+
+    .blink {
+      animation: blink 6s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    @keyframes blink {
+      0%, 97%, 100% { transform: scaleY(1); }
+      98% { transform: scaleY(0.05); }
+      99% { transform: scaleY(0.01); }
+    }
+</style>
+
+</head>
+<body>
+  <!-- Frase inicial -->
+
+    <section id="welcom">
+      <p >Amor en todos los sentidos...</p>
+    </section>
+   
+
+  <!-- nav con buscador -->
+
+<nav>
+<div class="nav-left"> 
+  <div class="search-wrapper">
+   <button class="lupa-btn" id="iconBtn" aria-label="Buscar">
+      <!-- Lupa SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <input type="text" placeholder="Buscar sentido..." class="search-box" id="inputBox" class="input-buscador" >
+  </div>
+</div>
+
+
+<div class="nav-center">
+  <section class="hero">
+   <a href="index.html"><img src="img/4am.png" alt="Imagen decorativa" class="imagen-png"></a> 
+  </section>
+</div>
+
+  <div class="nav-right social-icons">
+    <a href="https://www.instagram.com/accounts/onetap/?next=%2F&hl=es-la" target="_blank" rel="noopener noreferrer"><img src="img/instagramam.jpg" alt="I" /></a>
+    <a href="https://co.pinterest.com/gnarent/_profile/" target="_blank" rel="noopener noreferrer"><img src="img/pinterestam.jpg" alt="P" /></a>
+    <a href="https://www.facebook.com/share/15G8ndSGjp/" target="_blank" rel="noopener noreferrer"><img src="img/facebookam.jpg" alt="F" /></a>
+    <a href="https://www.tiktok.com/@njgq18?_t=ZS-8wWTbLR7kRd&_r=1" target="_blank" rel="noopener noreferrer"><img src="img/tiktokam.jpg" alt="T" /></a>
+  </div>
+</nav>
+
+
+
+ <!-- nav de sentidos -->
+  
+<nav class="navbarr"> 
+  <ul>
+    <li><a href="olfato.html" data-opcion="olfato">Olfato</a></li>
+    <li><a href="oido.html" data-opcion="oido">Oído</a></li>
+    <li><a href="gusto.html" data-opcion="gusto">Gusto</a></li>
+    <li><a href="tacto.html" data-opcion="tacto">Tacto</a></li>
+    <li><a href="vista.html" data-opcion="vista" id="link-vista">Vista</a></li>
+  </ul>
+</nav>
+<div class="contenedor-volver">
+  <a href="index.html" class="btn-flotante" id="btn-volver" title="Volver al inicio">⬅</a>
+</div>
+  <!-- introduccion -->
+<section id="section1">
+  <img src="img/fondoamarilo.png" alt="Fondo" class="background-img" />
+  <div class="overlay">
+<h1>¿Para qué sirve la vista?</h1>
+<p> La vista sirve para percibir formas, colores y movimientos. Gracias a este sentido, podemos orientarnos, reconocer rostros, leer y disfrutar de paisajes. Es fundamental para la mayoría de las actividades cotidianas y para interpretar el entorno que nos rodea.</p>
+
+<p> Este sentido nos conecta a través de la luz. La luz entra por la córnea, pasa por el cristalino y se enfoca en la retina, donde las células fotorreceptoras (conos y bastones) transforman la luz en señales eléctricas. Estas señales viajan por el nervio óptico hasta el cerebro, que las interpreta como imágenes.</p>
+
+<p>Dicen que los ojos son el espejo del alma… y los tuyos han sido mi refugio y mi alegría más brillante. En este rincón descubrirás cómo este sentido nos permite ver el mundo, y también, cómo con solo una mirada tuya, todo se vuelve hogar.
+</p>
+
+  </div>
+
+  <!-- Stickers -->
+  <img src="img/lentes.png" alt="Sticker 1" class="sticker" style="top: 10px; left: 310px;">
+  <img src="img/vinocular.png" alt="Sticker 2" class="sticker" style="top: 320px; left: 1100px;">
+</section>
+<div id="minidiv"></div>
+
+ <!-- curiosidades -->
+<section id="vision-curiosidades" style="padding: 2rem; border-radius: 1rem; position: relative; overflow: hidden;" class="section-eyes">
+ <!-- Ojos más grandes y más cerca -->
+    <div class="eye" style="top: 10%; left: 25%;">
+      <svg viewBox="0 0 120 60">
+        <path d="M5,30 Q30,5 60,5 Q90,5 115,30 Q90,55 60,55 Q30,55 5,30 Z" fill="#ffffff" stroke="#fbc742" stroke-width="3" class="blink"/>
+        <circle cx="60" cy="30" r="10" class="pupil"/>
+      </svg>
+      
+    </div>
+    <div class="eye" style="top: 35%; left: 35%;">
+      <svg viewBox="0 0 120 60">
+        <path d="M5,30 Q30,5 60,5 Q90,5 115,30 Q90,55 60,55 Q30,55 5,30 Z" fill="#ffffff" stroke="#fbc742" stroke-width="3" class="blink"/>
+        <circle cx="60" cy="30" r="10" class="pupil"/>
+      </svg>
+    </div>
+
+    <div class="eye" style="top: 30%; left: 70%;">
+      <svg viewBox="0 0 120 60">
+        <path d="M5,30 Q30,5 60,5 Q90,5 115,30 Q90,55 60,55 Q30,55 5,30 Z" fill="#ffffff" stroke="#fbc742" stroke-width="3" class="blink"/>
+        <circle cx="60" cy="30" r="10" class="pupil"/>
+      </svg>
+    </div>
+    <div class="eye" style="top: 40%; left: 5%;">
+      <svg viewBox="0 0 120 60">
+        <path d="M5,30 Q30,5 60,5 Q90,5 115,30 Q90,55 60,55 Q30,55 5,30 Z" fill="#ffffff" stroke="#fbc742" stroke-width="3" class="blink"/>
+        <circle cx="60" cy="30" r="10" class="pupil"/>
+      </svg>
+    </div>
+    <div class="eye" style="top: 60%; left: 80%;">
+      <svg viewBox="0 0 120 60">
+        <path d="M5,30 Q30,5 60,5 Q90,5 115,30 Q90,55 60,55 Q30,55 5,30 Z" fill="#ffffff" stroke="#fbc742" stroke-width="3" class="blink"/>
+        <circle cx="60" cy="30" r="10" class="pupil"/>
+      </svg>
+    </div>
+
+  <h2 style="text-align: center; color:#fbc742;">Curiosidades de la vista</h2>
+
+  <div style="position: relative; max-width: 600px; margin: auto; overflow: hidden; border-radius: 1rem; z-index: 2;">
+    <div id="carousel" style="display: flex; transition: transform 0.5s ease;">
+
+            <div class="carousel-item bg2">
+        <div class="overlay1">
+          <h1><strong>Los ojos humanos tienen una resolución equivalente</strong></h1>
+          <p>  a una cámara de aproximadamente 576 megapíxeles.
+</p>
+        </div>
+      </div>
+          <div class="carousel-item bg1">
+        <div class="overlay1">
+
+          <h1> <strong>El ojo tarda aproximadamente</strong> </h1>
+          <p> 1/10 de segundo en reaccionar a la luz.</p>
+        </div>
+      </div>
+
+  
+      <div class="carousel-item bg3">
+        <div class="overlay1">
+          <h1> <strong>La visión en blanco y negro es común en recién nacidos;</strong> </h1>
+          <p> el color se desarrolla durante los primeros meses de vida.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg4">
+        <div class="overlay1">
+          <h1><strong>Las cabras tienen pupilas rectangulares</strong> </h1>
+           <p> que les permiten ver casi 360° sin mover la cabeza.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg5">
+        <div class="overlay1">
+          <h1> <strong>Las personas con una condición llamada tetracromatismo</strong> </h1>
+          <p> pueden ver hasta 100 millones de colores, mientras que el promedio humano solo distingue unos 10 millones.
+</p>
+        </div>
+      </div>
+        <div class="carousel-item bg6">
+        <div class="overlay1">
+          <h1> <strong>El ojo de un águila es tan potente</strong></h1>
+          <p> que podría ver una hormiga en el suelo desde la cima de un edificio de 10 pisos.
+</p>
+        </div>
+      </div>
+              <div class="carousel-item bg7">
+        <div class="overlay1">
+          <h1> <strong>El calamar gigante</strong></h1>
+          <p> puede tener ojos del tamaño de una pelota de básquet.
+</p>
+        </div>
+      </div>
+              <div class="carousel-item bg8">
+        <div class="overlay1">
+          <h1> <strong>Algunas aves como los loros pueden ver la luz ultravioleta,</strong></h1>
+          <p>
+  invisible para los humanos.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="moveSlide(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-amarilla">⬅</button>
+    <button onclick="moveSlide(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-amarilla">➡</button>
+  </div>
+</section>
+
+<div id="minidiv"></div>
+
+<!-- pista-->
+
+<section id="juego">
+  <h1>Juego de Memoria</h1>
+  <div class="game-board" id="gameBoard"></div>
+
+  <!-- Modal de Felicitación -->
+  <div class="modal" id="winModal">
+    <div class="modal-content">
+      <h2>¡Felicidades! </h2>
+      <h2>🥳</h2>
+      <p>¡Has completado el juego!</p>
+      <p class="titilar">Dale click al corazón para continuar.</p>
+      <a href="libro.html" class="heart-link">❤️</a>
+    </div>
+  </div>
+</section>
+
+<div id="minidiv"></div>
+   <div class="elrenegado"><em><p>"Tus ojos tienen la magia de detener el tiempo cuando se cruzan con los míos."</p></em></div>
+  
+
+  <!-- footer , mensaje final-->
+
+<footer>
+
+
+  <div class="footer-main">
+    <div class="footer-left">
+      <img src="img/1am.png" alt="logo" id="logo_footer">
+    </div>
+
+<div class="footer-center">
+  <h3>Comunícate conmigo</h3>
+  <form id="contact-form" class="newsletter-form" action="https://script.google.com/macros/s/AKfycbyCQedUeIBqSWEVzoiIj5fGHQ3AR7t4_L8DrLVSqk2xui4VN8bPlpN62ouh6eELR5HB/exec" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje o comentario" rows="4" style="padding: 10px; border-radius: 20px; border: 1px solid #eca949; outline: none;" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="form-status" style="margin-top:10px; color: #ffffff;"></p>
+</div>
+
+ <div class="footer-links">
+  <div>
+    <h4>Info</h4>
+    <ul>
+      <li><a href="#" data-my-modal="myModal1">FAQs</a></li>
+      <li><a href="#" data-my-modal="myModal2">Shipping Policy</a></li>
+      <li><a href="#" data-my-modal="myModal3">Refund Policy</a></li>
+      <li><a href="#" data-my-modal="myModal4">Terms of Service</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modales personalizados -->
+<div id="myModal1" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-faqs">
+  <div class="modal-content-faqs">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>FAQs</h1></center> 
+
+<h2>1. ¿Qué tipo de página web es esta?</h2>
+<p>Es La Página Narent´s Senses™. Aquí no solo navegas: exploras, te ríes, recuerdas cosas de nosotros y... ¡buscas regalos escondidos como si fueras Marlin buscando a Nemo y a Dory!</p>
+
+<h2>2. ¿Los sentidos? ¿Así como vista, olfato y esas cosas?</h2>
+<p>Exacto. Cada sección está dedicada a uno de los sentidos: vista, oído, olfato, gusto y tacto. En cada uno encontrarás curiosidades, detalles nuestros y, si usas bien tus sentidos... una sorpresa escondida.</p>
+
+<h2>3. ¿O sea que tengo que buscar cosas? ¿Esto es una misión secreta?</h2>
+<p>Totalmente. Tu misión, si decides aceptarla (y debes), es encontrar el regalo escondido en cada sentido. Consejo: no hagas trampa.</p>
+
+<h2>4. ¿Qué pasa si me pierdo o no encuentro el regalo?</h2>
+<p>Puedes decirme. Te daré pistas. O haré como que no sé nada y me reiré mientras lo intentas.</p>
+
+<h2>5. ¿Esto es mejor que Netflix y Disney+?</h2>
+<p>¡Por supuesto! ¿Estas apps te dan un regalo escondido? No, no lo creo.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-shipping">
+  <div class="modal-content-shipping">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Shipping Policy</h1></center>
+<h2>¿Cómo llega tu regalo?</h2>
+<p>Cada regalo está empaquetado con todo el cariño del mundo y un toque extra de magia invisible para que llegue perfecto hasta tus manos.</p>
+
+<h2>¿Cuánto tarda en llegar?</h2>
+<p>Puede tardar desde “Ya casi” hasta “Cuando se pueda”, dependiendo de dónde estemos y del clima.</p>
+
+<h2>¿Y si se pierde?</h2>
+<p>Si eso pasa, te prometo que lo busco por todos lados, hasta debajo de la cama.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal3" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-policy">
+  <div class="modal-content-policy">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>Refund Policy</h1></center> 
+    <p>Aquí no hay reembolsos porque este regalo está hecho con puro amor y cero devoluciones.Así que, ¡disfrútalo y no pienses en devolverlo!.</p>
+
+    <p>Consejo amistoso: Disfruta el regalo.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal4" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-terms">
+  <div class="modal-content-terms">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Terms of Service</h1></center>
+<p>1.Este regalo es exclusivo y personalizado, por lo que no puede ser compartido ni prestado… a menos que quieras ganarte una multa.</p>
+
+<p>2.Cualquier intento de abrir el regalo antes de tiempo resultará en un sermón y posiblemente en un baile ridículo para distraerte.</p>
+
+<p>3.La sonrisa del receptor es obligatoria y, si no se cumple, Tendrá que ofrecer una sesión extra de mimos para corregirlo.</p>
+
+<p>4.Este regalo no es reembolsable, intercambiable ni transferible, pero sí es 100% garantizado para crear momentos memorables.</p>
+
+<p>5.Cualquier uso indebido del regalo será sancionado.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+</div><!-- cierra Modales personalizados -->
+</footer>
+<div id="divenblanco">
+
+</div>
+ <div class="footer-bottom">
+      <p>Narent's Senses © 2025</p>
+    </div>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+
+    // Crear hoja
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement("img");
+    star.src = "img/rayo.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size =  30+ Math.random() * 15;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+
+
+//mira si vista esta activada o no
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidos = ['tacto', 'olfato', 'oido', 'gusto', 'vista'];
+  const vistaLink = document.getElementById('link-vista');
+  const inputBox = document.getElementById('inputBox');
+  const iconBtn = document.getElementById('iconBtn');
+
+  const listaResultados = document.createElement("ul");
+  listaResultados.id = "lista-resultados";
+  inputBox.parentNode.appendChild(listaResultados);
+
+  const visitados = JSON.parse(localStorage.getItem('sentidos')) || {};
+  const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+  // Bloqueo del enlace
+  if (!vistaDesbloqueada) {
+    vistaLink.style.pointerEvents = 'none';
+    vistaLink.style.opacity = '0.5';
+    vistaLink.classList.add('bloqueado');
+    vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+  } else {
+    vistaLink.style.pointerEvents = 'auto';
+    vistaLink.style.opacity = '1';
+    vistaLink.classList.remove('bloqueado');
+    vistaLink.removeAttribute('title');
+  }
+
+  iconBtn.addEventListener('click', () => {
+    inputBox.classList.toggle('show');
+    if (inputBox.classList.contains('show')) {
+      inputBox.focus();
+    }
+  });
+
+  inputBox.addEventListener("input", () => {
+    const termino = inputBox.value.toLowerCase().trim();
+    listaResultados.innerHTML = "";
+
+    if (!termino) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    const resultados = sentidos.filter(s => {
+      if (s === 'vista' && !vistaDesbloqueada) return false;
+      return s.includes(termino);
+    });
+
+    if (termino.includes("vista") && !vistaDesbloqueada) {
+      resultados.push("vista");
+    }
+
+    if (resultados.length === 0) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    resultados.forEach(sentido => {
+      const li = document.createElement("li");
+      li.textContent = sentido.charAt(0).toUpperCase() + sentido.slice(1);
+      li.classList.add("opcion-buscador");
+
+      if (sentido === "vista" && !vistaDesbloqueada) {
+        li.classList.add("bloqueado");
+      } else {
+        li.addEventListener("click", () => {
+          window.location.href = sentido + ".html";
+        });
+      }
+
+      listaResultados.appendChild(li);
+    });
+
+    listaResultados.style.display = "block";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!inputBox.contains(e.target) && !listaResultados.contains(e.target)) {
+      listaResultados.innerHTML = "";
+      listaResultados.style.display = "none";
+    }
+  });
+});
+
+
+//footer
+
+//Formulario
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recargar la página
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'  // Para evitar problemas CORS con Apps Script
+    }).then(() => {
+      status.style.color = '#fbc742';
+      status.textContent = '¡Mensaje enviado con éxito!';
+      form.reset();
+    }).catch((error) => {
+      status.style.color = '#fbc742';
+      status.textContent = 'Hubo un error al enviar el mensaje.';
+      console.error('Error:', error);
+    });
+  });
+
+  
+
+
+//politicas
+
+ document.querySelectorAll('a[data-my-modal]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = link.getAttribute('data-my-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'block';
+    });
+  });
+
+  document.querySelectorAll('.custom-modal .myClose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.custom-modal').style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('custom-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  //carrusel
+
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+
+  function moveSlide(direction) {
+    const totalItems = carousel.children.length;
+    index = (index + direction + totalItems) % totalItems;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  //  pista
+
+const images = [
+  'img/1f.jpeg',
+  'img/2f.jpeg',
+  'img/3f.jpeg',
+  'img/4f.jpeg',
+  'img/5f.jpeg',
+  'img/6f.jpeg',
+  'img/7f.jpeg',
+  'img/8f.jpeg'
+];
+
+const gameBoard = document.getElementById('gameBoard');
+const winModal = document.getElementById('winModal');
+
+let cards = [];
+let flippedCards = [];
+let matchedCount = 0;
+
+// Duplicar y mezclar
+const shuffled = [...images, ...images].sort(() => Math.random() - 0.5);
+
+// Crear tarjetas
+shuffled.forEach((imgSrc) => {
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-front"></div>
+      <div class="card-back" style="background-image: url('${imgSrc}')"></div>
+    </div>
+  `;
+
+  card.addEventListener('click', () => flipCard(card, imgSrc));
+  gameBoard.appendChild(card);
+  cards.push(card);
+});
+
+function flipCard(card, imgSrc) {
+  if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+  card.classList.add('flipped');
+  flippedCards.push({ card, imgSrc });
+
+  if (flippedCards.length === 2) {
+    const [first, second] = flippedCards;
+    if (first.imgSrc === second.imgSrc) {
+      matchedCount++;
+
+      setTimeout(() => {
+        first.card.classList.add('matched');
+        second.card.classList.add('matched');
+        flippedCards = [];
+
+        if (matchedCount === images.length) {
+          setTimeout(() => {
+            winModal.style.display = 'flex';
+          }, 500);
+        }
+      }, 500);
+    } else {
+      setTimeout(() => {
+        first.card.classList.remove('flipped');
+        second.card.classList.remove('flipped');
+        flippedCards = [];
+      }, 1000);
+    }
+  }
+}
+
+//ojos
+
+const pupils = document.querySelectorAll('.pupil');
+
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      pupils.forEach(pupil => {
+        const eye = pupil.closest('.eye');
+        const rect = eye.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+
+        const angle = Math.atan2(dy, dx);
+        const distance = 8;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        pupil.setAttribute("transform", `translate(${x}, ${y})`);
+      });
+    });
+ 
+
+</script>
+</body>
+</html>

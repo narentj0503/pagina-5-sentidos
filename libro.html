@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" href="img/2a.png" type="image/png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <title>Libro</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cormorant Garamond", serif;
+      margin: 0;
+      padding: 50px;
+     /* background-image: url('img/fondolibroo.jpg');*/
+     background-color: #fdffe7;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+    }
+
+        /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    .section1 {
+      width: 100%;
+      height: 550px;
+      position: relative;
+      overflow: hidden;
+      background-image: url('img/fondocorazonlibro.png');
+      border-radius: 30px;
+      margin-bottom: 30px;
+      border: 3px dashed #ffda09; 
+    }
+
+    .section1 img {
+    height: 550px;
+    width: auto;
+    margin-top: 0;
+    margin-left: 22%;
+    }
+  
+
+    .section1 .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: 40px;
+      transform: translate(-50%, -50%);
+      color: rgb(0, 0, 0);
+      font-size: 25px;
+      background: rgba(255, 255, 255, 0);
+      padding: 80px;
+      border-radius: 10px;
+    }
+
+    .section2 {
+      background-color:#fdffa1;
+      border-radius: 30px;
+      padding: 30px;
+      border: 3px dashed #ffda09; 
+       display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+    }
+
+    .section2 div {
+      text-align: center;
+    }
+
+    .section2 img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .section2 img:hover {
+      opacity: 80%;
+      box-shadow: 0 20px 20px rgba(255, 188, 4, 0.74);
+    }
+    .section2 a {
+      display: inline-block;
+      font-size: 30px;
+      text-decoration: none;
+      color: #ffda09;
+    }
+
+    .section2 a:hover {
+      text-decoration: underline;
+    }
+
+
+.section2 .card {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section2 .card p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+    .btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color:#eca949;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color: #fbc742;
+}
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .modal-content {
+    background-image: url('img/modales finales.png');
+      background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+    padding: 30px;
+    border: 3px dashed #587efa;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    height: 600px;
+    width: 80%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .modal-content h2 {
+    width: 500px;
+    font-size: 50px;
+    color: #1e5175;
+    font-family: "Mrs Saint Delafield", cursive;
+    font-style: normal;
+    font-weight: 100;
+    margin-left: -30px;
+  }
+
+  .modal-content img {
+    max-width: 75%;
+    margin-bottom: 15px;
+  }
+
+  .modal-content p {
+    font-size: 35px;
+    color: #1e5175;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    font-family: "Mrs Saint Delafield", cursive;
+    width: 85%;
+    margin-top: 70px;
+
+  }
+
+  .btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color:#fbc742;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color:#eca949 ;
+}
+
+  </style>
+        
+        <script src='//static.anyflip.com/plugin/LightBox/js/anyflp-light-box-api-min.js'></script>
+</head>
+<body>
+<div class="contenedor-volver">
+  <a href="vista.html" class="btn-flotante" id="btn-volver" title="Volver a vista">⬅</a>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="welcomeModal" class="modal">
+  <div class="modal-content">
+   <center><h2>¡Feliz aniversario!</h2></center> 
+    <img src="img/fotoprincipal.png" alt="Imagen principal"><br>
+    <img src="img/codigo.jpeg" alt="Imagen secundaria" style="width: 200px; border-radius: 30px;">
+  </div>
+</div>
+
+<!-- Modal final después de 30s -->
+<div id="finalModal" class="modal">
+  <div class="modal-content">
+    <p>"Dicen que en los últimos minutos de vida, vemos pasar nuestros mejores recuerdos como una película. <br>
+Cuando todo pase ante mis ojos, sé que tus besos, tus miradas y tus abrazos serán el mejor resumen, y cada escena contigo será la más brillante de todas."<br>💙</h2>
+  </div>
+</div>
+
+  <!-- Primera sección -->
+  <section class="section1">
+    <img src="img/fondolibrop.png" alt="Imagen de fondo">
+    <div class="overlay-text"><center>¡Y aquí está! Después de meses hablando de él, al fin puedes tenerlo en tus manos (aunque no tan literal). <br>De corazón espero que cada página te saque una sonrisa y que te guste tanto como a mí hacerlo, porque entre líneas hay más que palabras: hay un pedacito de mí. <br> ¡Disfrútalo!</center></center></div>
+  </section>
+
+  <!-- Segunda sección -->
+  <!-- Segunda sección -->
+<section class="section2">
+  <div class="card">
+    <img src='https://online.anyflip.com/ngrkn/kzsz/files/shot.jpg'
+         data-rel='fh5-light-box-demo'
+         data-href='https://online.anyflip.com/ngrkn/kzsz/index.html'
+         data-width='550'
+         data-height='350'
+         data-title='ocho vueltas al sol'>
+    <p>Volumen 1</p>
+  </div>
+
+
+
+  <div class="card">
+    <img src='https://online.anyflip.com/ngrkn/qylz/files/shot.jpg'
+         data-rel='fh5-light-box-demo'
+         data-href='https://online.anyflip.com/ngrkn/qylz/index.html'
+         data-width='550'
+         data-height='350'
+         data-title='Ocho vueltas al sol Fabula'>
+    <p>Volumen 2 - fábula</p>
+  </div>
+
+  <div class="card">
+    <img src='https://online.anyflip.com/ngrkn/pkdk/files/shot.jpg'
+         data-rel='fh5-light-box-demo'
+         data-href='https://online.anyflip.com/ngrkn/pkdk/index.html'
+         data-width='550'
+         data-height='350'
+         data-title='Ocho vueltas al sol'>
+    <p>Volumen 3</p>
+  </div>
+
+  <div class="card">
+    <a href="https://www.canva.com/design/DAGei6UTlZk/9EEDBO0-2TYDCWNTKr3QiQ/edit?utm_content=DAGei6UTlZk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+      <img src="img/ochovueltasalsol.png" alt="">
+    </a>
+    <p>Canva</p>
+  </div>
+</section>
+
+
+ <script>
+for (let i = 0; i < 8; i++) {
+  // Estrella
+  const star = document.createElement("img");
+  star.src = "img/estrella.png";
+  star.classList.add("star");
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (6 + Math.random() * 4) + "s";
+  star.style.animationDelay = Math.random() * 10 + "s";
+  const starSize = 20 + Math.random() * 15;
+  star.style.width = starSize + "px";
+  star.style.height = starSize + "px";
+  document.body.appendChild(star);
+
+  // Corazón
+  const heart = document.createElement("img");
+  heart.src = "img/corazon2.png";
+  heart.classList.add("star"); // usa la misma clase para que tenga la animación
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+  heart.style.animationDelay = Math.random() * 10 + "s";
+  const heartSize = 15 + Math.random() * 15;
+  heart.style.width = heartSize + "px";
+  heart.style.height = heartSize + "px";
+  document.body.appendChild(heart);
+}
+
+
+  const images = document.querySelectorAll(".section2 img");
+  let clickedImages = new Set();
+  let modalTimerStarted = false;
+
+  images.forEach((img) => {
+    img.addEventListener("click", () => {
+      clickedImages.add(img);
+
+      // Cuando las 3 imágenes hayan sido clickeadas
+      if (clickedImages.size === 3 && !modalTimerStarted) {
+        modalTimerStarted = true;
+        
+        // Esperar 30 segundos antes de mostrar el modal
+        setTimeout(() => {
+          document.getElementById("finalModal").style.display = "flex";
+        }, 10000); // 30000 ms = 30 segundos
+      }
+    });
+  });
+
+  // Cerrar el modal al hacer clic en él
+  document.getElementById("finalModal").addEventListener("click", () => {
+    document.getElementById("finalModal").style.display = "none";
+  });
+
+
+  // Mostrar modal de bienvenida al cargar
+  window.addEventListener('DOMContentLoaded', () => {
+    const welcomeModal = document.getElementById("welcomeModal");
+    welcomeModal.style.display = "flex";
+
+    // Cerrar el modal de bienvenida al hacer clic
+    welcomeModal.addEventListener("click", () => {
+      welcomeModal.style.display = "none";
+    });
+  });
+
+
+  // Cerrar el modal final al hacer clic
+  document.getElementById("finalModal").addEventListener("click", () => {
+    document.getElementById("finalModal").style.display = "none";
+  });
+
+
+
+ </script>
+</body>
+</html>

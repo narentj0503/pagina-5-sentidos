@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="img/2m.png" type="image/png">
+  <title>Vida Mía</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 888px;
+      background-image: url('img/fondovidamia.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+ .container {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(255, 255, 255, 0.548);
+  border-radius: 20px;
+  border: 3px dashed #9b78bb; /* borde morado punteado */
+  box-shadow: 0 0 30px 10px rgba(155, 89, 182, 0.6); /* efecto de brillo */
+}
+
+    .left-side {
+      width: 40%;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .middle-side {
+      width: 30%;
+      padding: 20px;
+      margin-top: 20px;
+      box-sizing: border-box;
+      color: #7f3fbf; /* morado claro */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+     .right-side {
+      width: 30%;
+      padding: 20px;
+      margin-top: 80px;
+      box-sizing: border-box;
+      color: #7f3fbf; /* morado claro */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+#fotovideo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 9 / 16; /* esto lo hace vertical con buena proporción */
+  border-radius: 0px;
+  box-shadow: 0 0 15px #9b59b666; /* opcional, estilo bonito */
+  border: 3px dashed #9c59b6;
+  margin-bottom: 50px; 
+  background-color: #d6aaff;
+}
+
+    audio {
+      width: 70%;
+    }
+audio::-webkit-media-controls-panel {
+  background-color: #9b78bb!important; /* panel morado claro */
+  filter: brightness(1.1);
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #ffffff !important; /* botón morado oscuro */
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-timeline {
+  accent-color: #4b0082 !important; /* barra progreso morada */
+}
+
+audio {
+  accent-color: #643792; /* para navegadores compatibles */
+}
+
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      margin-left: 120px;
+      color:  #9b78bb; /* morado oscuro */
+      text-align: center;
+      width: 100%;
+    }
+
+    .lyrics-part {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #9b78bb;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color: rgb(113, 42, 131);
+}
+
+
+  </style>
+</head>
+<body>
+
+ <a href="oido.html" class="btn-flotante" id="btn-volver" title="Volver a oido">⬅</a>
+
+  <div class="container">
+    <!-- Lado izquierdo -->
+<div class="left-side">
+  <video id="fotovideo" src="fotovideo.mp4" autoplay muted loop playsinline poster="miniatura.jpg"></video>
+  <audio controls>
+    <source src="Audio.mp4" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+</div>
+
+
+    <!-- Centro: primera mitad de la letra -->
+    <div class="middle-side">
+     <center><h2>Vida Mía</h2></center> 
+      <div class="lyrics-part">
+        Vida mía <br>
+        Mi corazón lo llevas tú<br>
+        Por mí y en tu palma lo haces latir<br>
+        Con nadie había latido así<br><br>
+
+        Vida mía<br>
+        Mi corazón me habla tanto de ti<br>
+        Me dice que eres lo mejor<br>
+        Que nos ha pasado a los dos<br><br>
+
+        Si te digo vida mía<br>
+        Lo digo de manera literal<br>
+        Por ti no son solo cosquillas<br>
+        Por ti me gusta respirar<br>
+        Ay ay<br><br>
+
+        Si te digo vida mía<br>
+        No lo digo por exagerar<br>
+        Si la vida se trata de amar<br>
+        Sin ti no sería vida<br>
+        Ay ay<br>
+
+        Vida mía<br>
+        Si tú te vas qué le voy a decir<br>
+        Al corazón que late por ti<br>
+        Tú sabes que yo no sé mentir<br><br>
+
+      </div>
+    </div>
+
+    <!-- Derecha: segunda mitad de la letra -->
+    <div class="right-side">
+      <div class="lyrics-part">
+
+        Vida mía<br>
+        Espero que nunca te debas de ir<br>
+        Mi corazón tendría que elegir<br>
+        Se iría corriendo detrás de ti<br><br>
+
+        Si te digo vida mía<br>
+        Lo digo de manera literal<br>
+        Por ti no son solo cosquillas<br>
+        Por ti me gusta respirar<br>
+        Ay ay<br><br>
+
+        Si te digo vida mía<br>
+        No lo digo por exagerar<br>
+        Si la vida se trata de amar<br>
+        Sin ti no sería vida<br>
+        Ay ay<br><br>
+
+        Vida mía<br>
+        Cómo sería<br>
+        La vida mía si en ella tú no estás<br><br>
+
+        Ay vida mía<br>
+        Cómo sería<br>
+        La vida mía si en ella tú no estás
+      </div>
+    </div>
+  </div>
+
+  <script>
+        // Crear
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement("img");
+    star.src = "img/estrella.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size = 15 + Math.random() * 15;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/2v.png" type="image/png">
+  <title>Olfato</title>
+<style>
+
+    
+    body {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    /*Modales*/
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 1) 0%, rgba(197, 215, 250, 0.8) 40%, rgba(173, 198, 248, 0.8) 60%, rgb(129, 167, 221) 100%);
+      z-index: 1000;
+    }
+
+    .modal-box {
+      background-color: #ffffff;
+      padding: 0px;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      max-width: 800px;
+      width: 95%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-text-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #000000;
+      font-size: 1rem;
+      pointer-events: none;
+      width: 90%;
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #000000;
+      background: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    
+    #modal2 {
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 181, 0.9) 70%, #fbc742 100%);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    #modal2 .modal-box,
+    #modal2 .image-text-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #modal2 .modal-img {
+      width: 100%;
+      height: auto;
+    }
+
+    #modal2 .overlay-text {
+      color: #000000;
+      font-size: 1rem;
+      width: 90%;
+      text-align: center;
+    }
+
+    /* Mensaje arriba*/
+
+ #welcom {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+  background-color: #c4f6c6;
+}
+
+#welcom p {
+  color:#5daf66 ;
+  font-size: 16px;
+  margin: 0; 
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+}
+
+
+/*navegador con buscador*/
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgb(255, 255, 255);
+  height: 70px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 200px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  width: 400px; 
+  border: 1px solid#5daf66; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  caret-color: #5daf66;
+  color: #333;
+  opacity: 1; 
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+
+.search-box:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-box:active {
+  border: 1px solid #5daf66 !important;
+  outline: none; 
+}
+
+
+.lupa-btn {
+  background: none;
+  border:#ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  color: #5daf66;
+}
+
+
+#iconBtn {
+  background: none;   
+  border: none;        
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#5daf66;      
+}
+
+#iconBtn svg {
+  stroke: #5daf66;     
+}
+
+/**/
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.imagen-png {
+  height: 60px;
+  width: auto;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right img {
+  width: 24px;
+  margin-left: 15px;
+  border-radius: 30px;
+}
+
+  #lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid #5daf66;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px#5daf66;
+  }
+
+  .opcion-buscador {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+  }
+
+  .opcion-buscador:hover {
+    background-color:#a5f4ae88;
+  }
+
+  .opcion-buscador.bloqueado {
+    cursor: not-allowed;
+  }
+
+/* Estilo placeholder */
+.search-box::placeholder {
+  color: #5daf66;
+  font-style: italic;
+}
+
+
+/* nav de los sentidos*/
+
+    h1 {
+      color: rgb(0, 0, 0);
+      font-style: italic;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
+
+.navbarr {
+  background-color: #a5f4ae;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 6px;
+}
+
+.navbarr ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2px;
+}
+
+.navbarr a {
+  text-decoration: none;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 8px 50px; /* Añade espacio alrededor del texto */
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+.navbarr a:hover {
+  color: #45a450;
+  background-color:#5daf6659;
+}
+
+
+
+/*Mensaje final*/
+    #mensajeFinal{
+      margin: 0;
+      padding: 0;
+    
+      background-image: url('img/azul.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      height: 400px;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; 
+    }
+
+#mensajeFinal p {
+  margin: 0;          
+  padding: 0;         
+  line-height: 1.4;   
+
+}
+
+
+
+  /*Footer*/
+footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  background-image: url('img/nubeverde.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 0px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura deseada para la nube */
+  background-image: url('img/nube.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer contenido encima de la nube */
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 5%;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+
+.footer-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#logo_footer{
+      width: 200px;
+      height: 200px;
+      object-fit: cover; 
+      margin-right: 250px;
+}
+
+.footer-center {
+  max-width: 400px;
+  flex: 1 1 300px;
+  margin-right: 150px;
+}
+
+.footer-center h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color:#5daf66;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+button[type="submit"] {
+  background-color: #5daf66;  /* color original */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #7a9cff; /* color un poco más claro cuando está encima */
+}
+
+button[type="submit"]:active {
+  background-color: #7a9cff; /* color más oscuro al hacer click */
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid#5daf66!important;
+  outline: none; 
+  cursor: pointer;
+  color:#5daf66;
+}
+
+.newsletter-form button {
+  padding: 10px;
+  font-family: "Cormorant Garamond", serif;
+  background:#5daf66;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  border: 1px solid #5daf66 !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.footer-links {
+  flex: 1 1 300px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #5daf66;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: auto;
+  }
+  .custom-modal-content {
+    background-color: white;
+    color: #000000; /* Asegura que el texto sea negro */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+   .custom-modal-content p{
+    color: #000000; /* Asegura que el texto sea negro */
+    font-size: 20px;
+   }
+   .custom-modal-content h1{
+    color:  #5daf66; /* Asegura que el texto sea negro */
+   }
+
+
+.modal-content-faqs {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-shipping{
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-policy {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-terms {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+  .myClose-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .footer-links a {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+#divenblanco{
+   background:  #c4f6c6;
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 70px;
+}
+
+.footer-bottom {
+  position: relative;
+  padding: 30px 5%;
+  background:#a5f4ae;
+  margin-top: 3px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+}
+
+
+.nube-superpuesta {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: -40px; /* Ajusta cuánto se superpone sobre el fondo azul */
+}
+
+.nube-superpuesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; 
+  user-select: none;
+}
+/*inicio olfato*/
+
+#section1 {
+  position: relative;
+  height: 450px; /* o lo que necesites */
+  overflow: visible;
+}
+
+/* Capa 1 - Imagen de fondo */
+.background-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Capa 2 - Div blanco con sombra */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  background-color:#ffffff;
+  padding: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 12px;
+  width: 50%;
+  color: #a5f4ae;
+  border: 3px dashed #a5f4ae; /* Cambia a dotted si prefieres puntos */
+  border-radius: 30px;       /* Opcional, para esquinas redondeadas */
+}
+
+.overlay::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.overlay::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/* Capa 3 - Párrafo */
+.overlay p {
+  font-size: 20px;
+  color:#5daf66;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.overlay h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color:#45a450;
+  z-index: 2; /* opcional si el párrafo ya está dentro del div blanco */
+  font-family: "Cormorant Garamond", serif;
+  margin-top: 0%;
+}
+
+    .overlay:hover {
+      box-shadow: 0 0 20px #5daf66;
+    }
+
+
+/* Stickers */
+.sticker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* para que mantenga proporción si quieres */
+  z-index: 10; /* siempre encima */
+  cursor: pointer; /* opcional: cambia cursor si quieres que sean interactivos */
+}
+
+#minidiv{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #a5f4ae;
+}
+
+/*carrusel de curiosidades*/
+#olfato-curiosidades {
+  background-image: url('img/fondohonda2.png');
+  background-size: 300% 300%;
+  animation: aireFluyendo 15s ease infinite;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+@keyframes aireFluyendo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+  .carousel-item {
+    min-width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .overlay1 {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 1rem;
+   margin-top: 20%;
+   width: 300px;
+   margin-left: 22%;
+  }
+
+  .carousel-item p {
+    color: #000000;
+    font-size: 20px;
+  }
+    .carousel-item h1 {
+    color: #000000;
+    font-size: 22px;
+  }
+
+
+  .bg1 { background-image: url('img/cerebro.png'); }
+  .bg2 { background-image: url('img/perro.png'); }
+  .bg3 { background-image: url('img/mariposa.png'); }
+  .bg4 { background-image: url('img/olfatooo.png'); }
+  .bg5 { background-image: url('img/oso.png'); }
+  .bg6 { background-image: url('img/termometro.png'); }
+  .bg7 { background-image: url('img/corazon.png'); }
+  .bg8 { background-image: url('img/dormir.png'); }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  /*galeria olores favoritos*/
+  #minidiv2{
+  margin-top: 0%;
+  height: 3px;
+  width: 100%;
+  background-color: #a5f4ae;
+}
+
+.smell-gallery {
+  background-color: #ffffff;
+  padding: 2rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.smell-gallery h2 {
+  font-size: 30px;
+  margin-bottom: 1.5rem;
+  color: #5daf66;
+}
+
+.carousel {
+  justify-content: center;
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+  .flecha-verde {
+    color: #5daf66;
+  }
+
+.smell-item {
+  flex: 0 0 120px;
+  height: 300px;
+  width: 80px;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.4s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.smell-item:hover {
+  flex: 0 0 250px;
+  box-shadow: 0 4px 12px rgba(66, 192, 83, 0.842);
+}
+
+
+/*pista*/
+#pistaaa {
+  height: 600px;
+  width: 100%;
+  overflow: hidden; /* 👈 evita que el contenido se desborde */
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  background-image: url('img/margaritas.jpg');
+}
+
+.contenedor {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items:start ;
+}
+
+#chica {
+  height: 100%; /* Se adapta a los 400px de alto */
+  width: auto;
+  margin-left: 80px;
+  max-height: 100%; /* Nunca exceder el contenedor */
+  object-fit: contain;
+  border-radius: 12px;
+  cursor: pointer;
+  border: #388e3c;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+#chica:active {
+  transform: scale(0.95);
+}
+
+#bocadillo {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: 30px;
+  padding: 20px 14px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.397);
+  display: none;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  max-width: 500px;
+  height: 80px;
+  min-width: 500px;
+  font-size: 30px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: break-word;
+  background: #a5f4ae;
+  color: #5daf66;
+  z-index: 10;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-50%) scale(0.95); }
+  to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+  /* Flecha del bocadillo */
+  .bocadillo::after ::after{
+    content: "";    
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    top: 20px; /* altura de la flecha respecto al bocadillo */
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-top-color: #a5f4ae;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #a5f4ae;
+
+  }
+
+#bocadillo::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #a5f4ae;
+}
+
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  /*atras*/
+    
+.btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color:#5daf66;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.btn-flotante:hover {
+  background-color: #388e3c;
+}
+.elrenegado{
+  height: 40px;
+  margin-top: 80px;
+  position: absolute;
+  z-index: 8888;
+  justify-content: center;
+  width: 100%;
+}
+.elrenegado{
+  color: #388e3c;
+  font-size: 25px;
+  font-family: "Cormorant Garamond", serif;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+
+/**/
+/* ==========================
+   MENSAJE: Vista Desbloqueada
+========================== */
+#mensaje-vista-desbloqueada {
+  animation: titilar 1.5s infinite ease-in-out;
+  background-color: #ffffff86; /* Verde */
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(4, 112, 0, 0.25);
+  color: #388e3c;
+  cursor: default;
+  display: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25rem;
+  left: 50%;
+  padding: 20px 35px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  z-index: 9999;
+}
+
+#mensaje-vista-desbloqueada.mostrar {
+  display: block;
+}
+
+/* Animación de titileo suave */
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+/* ==========================
+   MENSAJE: Scroll Obligatorio
+========================== */
+.mensaje-scroll {
+  animation: parpadeo 1s infinite;
+  background-color: #fff;
+  border: 2px solid  #388e3c;
+  color:  #388e3c;
+  display: none;
+  font-size: 1.2em;
+  left: 50%;
+  padding: 20px 30px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* Animación de parpadeo */
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+</style>
+
+</head>
+<body>
+  <!-- Frase inicial -->
+
+    <section id="welcom">
+      <p >Amor en todos los sentidos...</p>
+    </section>
+   
+
+  <!-- nav con buscador -->
+
+<nav>
+<div class="nav-left"> 
+  <div class="search-wrapper">
+    <button class="icon-btn" id="iconBtn" aria-label="Buscar">
+      <!-- Lupa SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <input type="text" placeholder="Buscar sentido..." class="search-box" id="inputBox" class="input-buscador" >
+  </div>
+</div>
+
+
+<div class="nav-center">
+  <section class="hero">
+   <a href="index.html"><img src="img/4v.png" alt="Imagen decorativa" class="imagen-png"></a> 
+  </section>
+</div>
+
+  <div class="nav-right social-icons">
+    <a href="https://www.instagram.com/accounts/onetap/?next=%2F&hl=es-la" target="_blank" rel="noopener noreferrer"><img src="img/instagramv.jpg" alt="I" /></a>
+    <a href="https://co.pinterest.com/gnarent/_profile/" target="_blank" rel="noopener noreferrer"><img src="img/pinterestv.jpg" alt="P" /></a>
+    <a href="https://www.facebook.com/share/15G8ndSGjp/" target="_blank" rel="noopener noreferrer"><img src="img/facebookv.jpg" alt="F" /></a>
+    <a href="https://www.tiktok.com/@njgq18?_t=ZS-8wWTbLR7kRd&_r=1" target="_blank" rel="noopener noreferrer"><img src="img/tiktokv.jpg" alt="T" /></a>
+  </div>
+</nav>
+
+
+
+ <!-- nav de sentidos -->
+  
+<nav class="navbarr"> 
+  <ul>
+    <li><a href="olfato.html" data-opcion="olfato">Olfato</a></li>
+    <li><a href="oido.html" data-opcion="oido">Oído</a></li>
+    <li><a href="gusto.html" data-opcion="gusto">Gusto</a></li>
+    <li><a href="tacto.html" data-opcion="tacto">Tacto</a></li>
+    <li><a href="vista.html" data-opcion="vista" id="link-vista">Vista</a></li>
+  </ul>
+</nav>
+<a href="index.html" class="btn-flotante" title="Volver al inicio">
+  ⬅
+</a>
+  <!-- introduccion -->
+<section id="section1">
+  <img src="img/fondoverde.png" alt="Fondo" class="background-img" />
+  <div class="overlay">
+<h1>¿Para qué sirve el olfato?</h1>
+<p> El olfato sirve para detectar y distinguir olores. Nos alerta sobre peligros, como el humo o la comida en mal estado, y también nos conecta con recuerdos muy profundos. Además, influye mucho en el sentido del gusto.</p>
+
+<p>Su eficaz funcionamiento se debe a los receptores olfativos ubicados en la parte superior de la nariz. Las moléculas olorosas se disuelven en la mucosa nasal, se unen a estos receptores y envían señales al bulbo olfativo. Este las transmite al cerebro, donde se identifican los olores y se relacionan con nuestras memorias.</p>
+
+<p>Desde el olor de tu cuello, tus prendas o incluso el aroma de nuestras comidas favoritas… todo eso vive en mi memoria gracias al olfato. Aquí encontrarás datos sobre este sentido y una pista que quizás solo puedas oler con el corazón..</p>
+
+  </div>
+
+  <!-- Stickers -->
+  <img src="img/hierbabuena.png" alt="Sticker 1" class="sticker" style="top: 10px; left: 290px;">
+  <img src="img/manzanaverde.png" alt="Sticker 2" class="sticker" style="top: 340px; left: 1100px;">
+</section>
+<div id="minidiv"></div>
+
+ <!-- curiosidades -->
+<section id="olfato-curiosidades" style="padding: 2rem; border-radius: 1rem;">
+  <h2 style="text-align: center; color: #5daf66;">Curiosidades del olfato</h2>
+
+  <div style="position: relative; max-width: 600px; margin: auto; overflow: hidden; border-radius: 1rem;">
+    <div id="carousel" style="display: flex; transition: transform 0.5s ease;">
+      <div class="carousel-item bg1">
+        <div class="overlay1">
+          <h1><strong>El olfato está conectado al recuerdo:</strong></h1>
+          <p>  De todos los sentidos, es el más ligado a la memoria. Por eso puedes oler algo y recordar un momento.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg2">
+        <div class="overlay1">
+          <h1> <strong>Los perros nos ganan por goleada:</strong> </h1>
+          <p>Su olfato es entre 10,000 y 100,000 veces más agudo que el nuestro. ¡Pueden oler hasta enfermedades!.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg3">
+        <div class="overlay1">
+          <h1> <strong>Las mariposas huelen con los pies:</strong> </h1>
+          <p>Tienen sensores en sus patas que detectan olores. Imagínate caminar y oler al mismo tiempo. Increíble, ¿no?</p>
+        </div>
+      </div>
+      <div class="carousel-item bg4">
+        <div class="overlay1">
+          <h1><strong>Puedes detectar más de 1 billón de olores diferentes:</strong> </h1>
+           <p> Durante mucho tiempo se pensó que el humano solo detectaba 10,000, pero estudios recientes dicen que ¡son más de un billón!.</p>
+        </div>
+      </div>
+      <div class="carousel-item bg5">
+        <div class="overlay1">
+          <h1> <strong>El oso es el rey del olfato:</strong> </h1>
+          <p>Un oso pardo puede detectar comida a más de 30 km de distancia.</p>
+        </div>
+      </div>
+        <div class="carousel-item bg6">
+        <div class="overlay1">
+          <h1> <strong>Los olores cambian según la temperatura:</strong></h1>
+          <p>Cuando algo está caliente, libera más moléculas olorosas, por eso el café huele más fuerte caliente que frío.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg7">
+        <div class="overlay1">
+          <h1> <strong>El olfato influye en la atracción:</strong></h1>
+          <p>Algunas nacen sin olfato o lo pierden por accidentes o enfermedades. Y aunque parece menor, ¡imagina no poder la comidita!.</p>
+        </div>
+      </div>
+              <div class="carousel-item bg8">
+        <div class="overlay1">
+          <h1> <strong>El olfato funciona incluso mientras dormimos:</strong></h1>
+          <p>Aunque no percibimos olores conscientemente al dormir, ciertos aromas pueden influir en nuestros sueños o en la calidad del descanso. ¡Por eso los aceites esenciales funcionan tan bien!</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="moveSlide(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-verde">⬅</button>
+    <button onclick="moveSlide(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0); border: none; font-size: 1.5rem;" class="flecha-verde">➡</button>
+  </div>
+</section>
+<div id="minidiv"></div>
+  <!-- galeria olores favoritos -->    
+   <section class="smell-gallery">
+  <h2>Olores placenteros</h2>
+  <div class="carousel">
+    <div class="smell-item" style="background-image: url('img/cilantroo.png');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/gasolina.jpg');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/hierba.png');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/cacao.png');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/pan.jpg');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/incienso.jpg');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/lluvia.jpg');">
+    </div>
+    <div class="smell-item" style="background-image: url('img/cafe.jpg');">
+    </div>
+  </div>
+</section>
+<div id="minidiv"></div>
+
+<!--pista-->
+
+<section id="pistaaa">
+<div class="contenedor">
+  <img id="chica" src="img/chicaflor.png" alt="Chica con flor">
+  <div id="bocadillo"></div>
+</div>
+</section>
+<div id="minidiv"></div>
+
+   <div class="elrenegado"><em><p>"El aroma tuyo me transporta a los momentos más felices de mi vida".</p></em></div>
+  </div>
+
+  <!-- footer , mensaje final-->
+
+<footer>
+
+
+  <div class="footer-main">
+    <div class="footer-left">
+      <img src="img/1v.png" alt="logo" id="logo_footer">
+    </div>
+
+<div class="footer-center">
+  <h3>Comunícate conmigo</h3>
+  <form id="contact-form" class="newsletter-form" action="https://script.google.com/macros/s/AKfycbyCQedUeIBqSWEVzoiIj5fGHQ3AR7t4_L8DrLVSqk2xui4VN8bPlpN62ouh6eELR5HB/exec" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje o comentario" rows="4" style="padding: 10px; border-radius: 20px; border: 1px solid #5daf66; outline: none;" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="form-status" style="margin-top:10px; color: #ffffff;"></p>
+</div>
+
+ <div class="footer-links">
+  <div>
+    <h4>Info</h4>
+    <ul>
+      <li><a href="#" data-my-modal="myModal1">FAQs</a></li>
+      <li><a href="#" data-my-modal="myModal2">Shipping Policy</a></li>
+      <li><a href="#" data-my-modal="myModal3">Refund Policy</a></li>
+      <li><a href="#" data-my-modal="myModal4">Terms of Service</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modales personalizados -->
+<div id="myModal1" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-faqs">
+  <div class="modal-content-faqs">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>FAQs</h1></center> 
+
+<h2>1. ¿Qué tipo de página web es esta?</h2>
+<p>Es La Página Narent´s Senses™. Aquí no solo navegas: exploras, te ríes, recuerdas cosas de nosotros y... ¡buscas regalos escondidos como si fueras Marlin buscando a Nemo y a Dory!</p>
+
+<h2>2. ¿Los sentidos? ¿Así como vista, olfato y esas cosas?</h2>
+<p>Exacto. Cada sección está dedicada a uno de los sentidos: vista, oído, olfato, gusto y tacto. En cada uno encontrarás curiosidades, detalles nuestros y, si usas bien tus sentidos... una sorpresa escondida.</p>
+
+<h2>3. ¿O sea que tengo que buscar cosas? ¿Esto es una misión secreta?</h2>
+<p>Totalmente. Tu misión, si decides aceptarla (y debes), es encontrar el regalo escondido en cada sentido. Consejo: no hagas trampa.</p>
+
+<h2>4. ¿Qué pasa si me pierdo o no encuentro el regalo?</h2>
+<p>Puedes decirme. Te daré pistas. O haré como que no sé nada y me reiré mientras lo intentas.</p>
+
+<h2>5. ¿Esto es mejor que Netflix y Disney+?</h2>
+<p>¡Por supuesto! ¿Estas apps te dan un regalo escondido? No, no lo creo.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-shipping">
+  <div class="modal-content-shipping">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Shipping Policy</h1></center>
+<h2>¿Cómo llega tu regalo?</h2>
+<p>Cada regalo está empaquetado con todo el cariño del mundo y un toque extra de magia invisible para que llegue perfecto hasta tus manos.</p>
+
+<h2>¿Cuánto tarda en llegar?</h2>
+<p>Puede tardar desde “Ya casi” hasta “Cuando se pueda”, dependiendo de dónde estemos y del clima.</p>
+
+<h2>¿Y si se pierde?</h2>
+<p>Si eso pasa, te prometo que lo busco por todos lados, hasta debajo de la cama.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal3" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-policy">
+  <div class="modal-content-policy">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>Refund Policy</h1></center> 
+    <p>Aquí no hay reembolsos porque este regalo está hecho con puro amor y cero devoluciones.Así que, ¡disfrútalo y no pienses en devolverlo!.</p>
+
+    <p>Consejo amistoso: Disfruta el regalo.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal4" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-terms">
+  <div class="modal-content-terms">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Terms of Service</h1></center>
+<p>1.Este regalo es exclusivo y personalizado, por lo que no puede ser compartido ni prestado… a menos que quieras ganarte una multa.</p>
+
+<p>2.Cualquier intento de abrir el regalo antes de tiempo resultará en un sermón y posiblemente en un baile ridículo para distraerte.</p>
+
+<p>3.La sonrisa del receptor es obligatoria y, si no se cumple, Tendrá que ofrecer una sesión extra de mimos para corregirlo.</p>
+
+<p>4.Este regalo no es reembolsable, intercambiable ni transferible, pero sí es 100% garantizado para crear momentos memorables.</p>
+
+<p>5.Cualquier uso indebido del regalo será sancionado.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+</div><!-- cierra Modales personalizados -->
+</footer>
+<div id="divenblanco">
+
+</div>
+ <div class="footer-bottom">
+      <p>Narent's Senses © 2025</p>
+    </div>
+
+  <div id="mensaje-vista-desbloqueada">
+    ¡Has desbloqueado el sentido de la vista!
+  </div>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidoActual = 'olfato'; // Cambia según la página
+  const totalSentidos = 4;
+  const mensaje = document.getElementById('mensaje-vista-desbloqueada');
+
+  // Marcar sentido actual
+  let sentidos = JSON.parse(localStorage.getItem('sentidos')) || {};
+  sentidos[sentidoActual] = true;
+  localStorage.setItem('sentidos', JSON.stringify(sentidos));
+
+  // Verificar si ya se mostró el mensaje
+  const mensajeMostrado = localStorage.getItem('mensajeMostrado') === 'true';
+  const visitadosCount = Object.values(sentidos).filter(Boolean).length;
+
+  if (visitadosCount === totalSentidos && mensaje && !mensajeMostrado) {
+    const mostrarSiScrollAlFinal = () => {
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10)) {
+        mensaje.classList.add('mostrar');
+        localStorage.setItem('mensajeMostrado', 'true');
+      }
+    };
+
+    window.addEventListener('scroll', mostrarSiScrollAlFinal);
+
+    // Cerrar al hacer clic fuera del mensaje
+    document.addEventListener('click', (e) => {
+      if (mensaje.classList.contains('mostrar') && !mensaje.contains(e.target)) {
+        mensaje.classList.remove('mostrar');
+      }
+    });
+  }
+});
+
+
+    // Crear hoja
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement("img");
+    star.src = "img/hoja.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size = 15 + Math.random() * 15;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+
+
+//mira si vista esta activada o no
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const vistaLink = document.getElementById('link-vista'); // el <a id="link-vista" href="vista.html">
+    const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+    if (!vistaDesbloqueada) {
+      vistaLink.style.pointerEvents = 'none';
+      vistaLink.style.opacity = '0.5';
+      vistaLink.classList.add('bloqueado');
+      vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+    } else {
+      vistaLink.style.pointerEvents = 'auto';
+      vistaLink.style.opacity = '1';
+      vistaLink.classList.remove('bloqueado');
+      vistaLink.removeAttribute('title');
+    }
+  });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidos = ['tacto', 'olfato', 'oido', 'gusto', 'vista'];
+  const vistaLink = document.getElementById('link-vista');
+  const inputBox = document.getElementById('inputBox');
+  const iconBtn = document.getElementById('iconBtn');
+
+  const listaResultados = document.createElement("ul");
+  listaResultados.id = "lista-resultados";
+  inputBox.parentNode.appendChild(listaResultados);
+
+  const visitados = JSON.parse(localStorage.getItem('sentidos')) || {};
+  const vistaDesbloqueada = localStorage.getItem('vistaDesbloqueada') === 'true';
+
+  // Bloquea o desbloquea el link a vista
+  if (!vistaDesbloqueada) {
+    vistaLink.style.pointerEvents = 'none';
+    vistaLink.style.opacity = '0.5';
+    vistaLink.classList.add('bloqueado');
+    vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+  } else {
+    vistaLink.style.pointerEvents = 'auto';
+    vistaLink.style.opacity = '1';
+    vistaLink.classList.remove('bloqueado');
+    vistaLink.removeAttribute('title');
+  }
+
+  iconBtn.addEventListener('click', () => {
+    inputBox.classList.toggle('show');
+    if (inputBox.classList.contains('show')) {
+      inputBox.focus();
+    }
+  });
+
+  inputBox.addEventListener("input", () => {
+    const termino = inputBox.value.toLowerCase().trim();
+    listaResultados.innerHTML = "";
+
+    if (!termino) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    const resultados = sentidos.filter(s => {
+      if (s === 'vista' && !vistaDesbloqueada) return false;
+      return s.includes(termino);
+    });
+
+    if (termino.includes("vista") && !vistaDesbloqueada) {
+      resultados.push("vista");
+    }
+
+    if (resultados.length === 0) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    resultados.forEach(sentido => {
+      const li = document.createElement("li");
+      li.textContent = sentido.charAt(0).toUpperCase() + sentido.slice(1);
+      li.classList.add("opcion-buscador");
+
+      if (sentido === "vista" && !vistaDesbloqueada) {
+        li.classList.add("bloqueado");
+      } else {
+        li.addEventListener("click", () => {
+          window.location.href = sentido + ".html";
+        });
+      }
+
+      listaResultados.appendChild(li);
+    });
+
+    listaResultados.style.display = "block";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!inputBox.contains(e.target) && !listaResultados.contains(e.target)) {
+      listaResultados.innerHTML = "";
+      listaResultados.style.display = "none";
+    }
+  });
+});
+
+
+
+//footer
+
+//Formulario
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recargar la página
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'  // Para evitar problemas CORS con Apps Script
+    }).then(() => {
+      status.style.color = 'green';
+      status.textContent = '¡Mensaje enviado con éxito!';
+      form.reset();
+    }).catch((error) => {
+      status.style.color = 'red';
+      status.textContent = 'Hubo un error al enviar el mensaje.';
+      console.error('Error:', error);
+    });
+  });
+
+  
+
+
+//politicas
+
+ document.querySelectorAll('a[data-my-modal]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = link.getAttribute('data-my-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'block';
+    });
+  });
+
+  document.querySelectorAll('.custom-modal .myClose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.custom-modal').style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('custom-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  //carrusel
+
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+
+  function moveSlide(direction) {
+    const totalItems = carousel.children.length;
+    index = (index + direction + totalItems) % totalItems;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // pista
+
+const frases = [
+    "Mmm, qué rico huele...",
+    "¡Esta flor tiene un aroma delicioso!",
+    "Jmm...",
+    "Empiezo a sospechar que esta flor guarda secretos.",
+    "¿Será una pista disfrazada?.",
+    "Confirmado: esto no es solo un aroma, es una pista.",
+    "...",
+    "La flor habló: .",
+    "En el refugio habitual del acero, donde la velocidad se convierte en pausa… ahí está."
+  ];
+
+  const despedida = "¿¡Sigues aqui!? ¡ve a buscar!!¡Adiós!.";
+
+  const chica = document.getElementById('chica');
+  const bocadillo = document.getElementById('bocadillo');
+  let clickCount = 0;
+  let despedidaMostrada = false;
+
+  chica.addEventListener('click', () => {
+    if (clickCount < frases.length) {
+      bocadillo.style.display = 'block';
+      bocadillo.style.transition = 'none';
+      bocadillo.style.opacity = '1';
+      bocadillo.textContent = frases[clickCount];
+      reiniciarAnimacion();
+      clickCount++;
+    } else if (!despedidaMostrada) {
+      bocadillo.style.display = 'block';
+      bocadillo.style.transition = 'none';
+      bocadillo.style.opacity = '1';
+      bocadillo.textContent = despedida;
+      reiniciarAnimacion();
+      despedidaMostrada = true;
+
+      // Ocultar el bocadillo después de 2 segundos con fade out y luego display none
+      setTimeout(() => {
+        bocadillo.style.transition = "opacity 0.5s ease";
+        bocadillo.style.opacity = '0';
+
+        setTimeout(() => {
+          bocadillo.style.display = 'none';
+
+          // Reiniciar conteo para poder repetir la interacción
+          clickCount = 0;
+          despedidaMostrada = false;
+        }, 500);
+      }, 2000);
+    }
+  });
+
+  function reiniciarAnimacion() {
+    bocadillo.style.animation = 'none';
+    void bocadillo.offsetWidth; // Trigger reflow
+    bocadillo.style.animation = null;
+  }
+</script>
+</body>
+</html>

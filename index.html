@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <title>Narent´s Senses</title>
+    <link rel="icon" href="img/2 - copia.png" type="image/png">
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*Estrellas cayendo*/
+
+    .star {
+      position: fixed;
+      top: -20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+
+    /*Modales*/
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff00;
+      z-index: 9999;
+    }
+
+    .modal-box {
+      background-color: #ffffff00;
+      padding: 0px;
+      max-width: 800px;
+      width: 95%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-text-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #000000;
+      font-size: 1rem;
+      pointer-events: none;
+      width: 90%;
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #c4c4c4;
+      background: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    
+    #modal2 {
+      background: #ffffff00;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    #modal2 .modal-box,
+    #modal2 .image-text-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #modal2 .modal-img {
+      width: 105%;
+      height: auto;
+    }
+
+    #modal2 .overlay-text {
+      color: #000000;
+      width: 40%;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    #modal2 .overlay-text h1 {
+      color: #000000;
+      font-size: 25px;
+    
+    }
+
+    /* Mensaje arriba*/
+
+ #welcom {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+  background-color: #c0ceff;
+}
+
+#welcom p {
+  color: #5f83ff;
+  font-size: 16px;
+  margin: 0; 
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+}
+
+/*navegador con buscador*/
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgb(255, 255, 255);
+  height: 70px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 200px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  width: 400px; 
+  border: 1px solid #5f83ff; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  caret-color: #5f83ff;
+  color: #333;
+  opacity: 1; 
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+
+.search-box:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-box:hover,
+.search-box:focus,
+.search-box:active {
+  border: 1px solid #5f83ff !important;
+  outline: none; 
+}
+
+
+.lupa-btn {
+  background: none;
+  border:#ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  color: #5f83ff
+}
+
+
+#iconBtn {
+  background: none;   
+  border: none;        
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5f83ff;      
+}
+
+#iconBtn svg {
+  stroke: #5f83ff;     
+}
+
+/**/
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.imagen-png {
+  height: 60px;
+  width: auto;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right img {
+  width: 24px;
+  margin-left: 15px;
+}
+
+  #lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid #5f83ff;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px #5f83ff;
+  }
+
+  .opcion-buscador {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+  }
+
+  .opcion-buscador:hover {
+    background-color:#a4b7fa88;
+  }
+
+  .opcion-buscador.bloqueado {
+    color: #5f83ff;
+    cursor: not-allowed;
+  }
+
+/* Estilo placeholder */
+.search-box::placeholder {
+  color: #5f83ffaa;
+  font-style: italic;
+}
+
+
+/* nav de los sentidos*/
+
+    h1 {
+      color: rgb(0, 0, 0);
+      font-style: italic;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
+
+.navbarr {
+  background-color: #a4b7fa;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 6px;
+}
+
+.navbarr ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2px;
+}
+
+.navbarr a {
+  text-decoration: none;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 8px 50px; /* Añade espacio alrededor del texto */
+  font-family: "Cormorant Garamond", serif;
+}
+
+
+.navbarr a:hover {
+  color: #3a67ff;
+  background-color:#5f82ff59;
+}
+
+
+
+    /*logo de bienvenida*/
+
+.ero {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  background-image: url('img/azul.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 0;
+  overflow: hidden; 
+}
+
+.imagen-d {
+  width: 60%; /* o 60% si quieres que no cubra todo */
+  height: auto;
+  display: block;
+  z-index: 1;
+  margin-left: 255px;
+  position: relative;
+}
+
+.wave-text-container {
+  position: absolute;
+  top: 200px; /* Ajusta esto para mover el texto más arriba o abajo */
+  left:-160px ;
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wave-text-container svg {
+  width: 80%;
+  height: auto;
+}
+
+/*estrellas en ola*/
+
+.wave-stars-container {
+  position: absolute;
+  top: 150px;
+  left: 70%;
+  width: 30%;
+  height: 150px;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+
+.wave-stars-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px; /* ancho de la zona fade */
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), #ffffff);
+  mix-blend-mode: lighten; /* para que se fusione bien con el fondo */
+  z-index: 15;
+}
+
+#svg-estrellas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scaleY(-1);
+}
+
+
+    /* Imagenes de los sentidos*/
+
+  #Senses{
+    margin-top: 4px;
+    background-color:#f0f3e8;
+    height: 430px;
+  }
+
+    .sentidos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      padding: 50px 20px;
+      gap: 30px;
+    }
+
+    .sentidos img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: transform 0.3s;
+      cursor: pointer;
+     
+    }
+
+    .sentidos img:hover {
+      transform: scale(1.1);
+     box-shadow: 0 0 20px #3e66f7cc;
+    }
+
+    #titulo_desbloqueo{
+      margin: 0%;
+      color: #5f83ff;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+    }
+
+    /*barra de progreso*/
+
+    .progress-container {
+      width: 80%;
+      height: 20px;
+      background-color: #c0ceff;
+      border-radius: 10px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #5f83ff;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Estilos modal */
+    #modal-final {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0);
+      justify-content: center;
+      align-items: center;
+        z-index: 1000;
+    }
+
+
+
+    #modal-contenido {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      height: auto;
+      text-align: center;
+        position: relative;
+      color: #5f83ff;
+      font-size: 20px;
+    }
+
+
+    #modal-contenido a {
+      text-decoration: none;
+    }
+
+    .cerrar-modal {
+      cursor: pointer;
+      background: #5f82ff85;
+      color: white;
+      border: none;
+      padding: 5px;
+      border-radius: 30px;
+        position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+    }
+
+
+
+    /* Botón vista bloqueado */
+    #btn-vista {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* Cuando esté desbloqueado */
+    #btn-vista.desbloqueado {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+
+    
+/*Mensaje final*/
+    #mensajeFinal{
+      margin: 0;
+      padding: 0;
+      background-image: url('img/azul.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      height: 400px;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; 
+    }
+
+#mensajeFinal p {
+  margin: 0;          
+  padding: 0;         
+  line-height: 1.4;   
+
+}
+
+#sugerencias {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background: white;
+}
+
+#sugerencias li {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#sugerencias li:hover {
+  background-color:  #c0ceff;
+}
+
+
+
+/*Footer*/
+footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  background-image: url('img/nube.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 100px;
+  top: 20px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura deseada para la nube */
+  background-image: url('img/nube.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.titilar {
+  margin-top: -10px;
+  animation: titilar 1s infinite;
+  color: #5f83ff;; /* o el color que desees */
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes titilar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer contenido encima de la nube */
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 5%;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  margin-top: 200px;
+}
+
+
+.footer-left h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#logo_footer{
+      width: 200px;
+      height: 200px;
+      object-fit: cover; 
+      margin-right: 250px;
+}
+
+.footer-center {
+  max-width: 400px;
+  flex: 1 1 300px;
+  margin-right: 150px;
+}
+
+.footer-center h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #5f83ff;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+button[type="submit"] {
+  background-color: #5f83ff;  /* color original */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #7a9cff; /* color un poco más claro cuando está encima */
+}
+
+button[type="submit"]:active {
+  background-color: #3b57cc; /* color más oscuro al hacer click */
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #5f83ff !important;
+  outline: none; 
+  cursor: pointer;
+  color: #5f83ff
+}
+
+.newsletter-form button {
+  padding: 10px;
+  font-family: "Cormorant Garamond", serif;
+  background:#5f83ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  border: 1px solid #5f83ff !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.footer-links {
+  flex: 1 1 300px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  color: #5f83ff;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: auto;
+  }
+  .custom-modal-content {
+    background-color: white;
+    color: #000000; /* Asegura que el texto sea negro */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+   .custom-modal-content p{
+    color: #000000; /* Asegura que el texto sea negro */
+    font-size: 20px;
+   }
+   .custom-modal-content h1{
+    color:  #5f83ff; /* Asegura que el texto sea negro */
+   }
+
+
+.modal-content-faqs {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-shipping{
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-policy {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.modal-content-terms {
+  max-width: 600px; /* Puedes ajustar este valor */
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+  .myClose-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .footer-links a {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+#divenblanco{
+   background:  #c0ceff;
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 70px;
+}
+
+.footer-bottom {
+  position: relative;
+  padding: 30px 5%;
+  background: #a4b7fa;
+  margin-top: 3px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+}
+
+
+.nube-superpuesta {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: -40px; /* Ajusta cuánto se superpone sobre el fondo azul */
+}
+
+.nube-superpuesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; 
+  user-select: none;
+}
+/*reiniciar boton*/
+
+    #resetBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #5f83ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    #resetBtn:hover {
+      background-color: #3a67ff;
+    }
+
+        #resetBtn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body>
+  <!-- Botón con símbolo de reiniciar () -->
+   <button id="resetBtn" title="Reiniciar">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5s-2.24 5-5 5a5 5 0 0 1-4.9-4H6a7 7 0 0 0 6 6.92A7 7 0 0 0 19 13c0-3.87-3.13-7-7-7z"/>
+    </svg>
+  </button>
+ <!-- Modal 1 -->
+
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <button class="close" onclick="cerrarModal()">✖</button>
+      <div class="image-text-container">
+        <img src="img/Index.png" alt="Palabras primordiales" class="modal-img" />
+        <div class="overlay-text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+
+  <div id="modal2" class="modal">
+    <div class="modal-box">
+      <button class="close" onclick="cerrarModal2()">✖</button>
+      <div class="image-text-container">
+        <img src="img/index2.png" alt="Imagen segunda" class="modal-img" />
+        <div class="overlay-text">
+          <h1>¿Regalo de los 5 sentidos? ¿Qué es?</h1>
+          <p>
+El regalo de los 5 sentidos es como un combo especial para tu cuerpo y tu mente, donde cada sentido recibe su propia atención VIP. <br>
+Aquí cada detalle está pensado para que puedas ver algo lindo, escuchar algo que te guste, probar algo delicioso, oler algo especial y sentir algo agradable al tocarlo. <br>
+La idea es que cada sentido se active y se conecte contigo de forma única, haciendo que el momento sea más intenso y memorable.</p>
+<p>Así que prepárate, porque este regalo no solo se ve bonito, también se siente, se escucha, se huele y se saborea.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Frase inicial -->
+
+    <section id="welcom">
+      <p >Amor en todos los sentidos...</p>
+    </section>
+   
+
+  <!-- nav con buscador -->
+
+<nav>
+<div class="nav-left"> 
+  <div class="search-wrapper">
+    <button class="icon-btn" id="iconBtn" aria-label="Buscar">
+      <!-- Lupa SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <input type="text" placeholder="Buscar sentido..." class="search-box" id="inputBox">
+  </div>
+</div>
+
+
+<div class="nav-center">
+  <section class="hero">
+   <a href="index.html"><img src="img/4.png" alt="Imagen decorativa" class="imagen-png"></a> 
+  </section>
+</div>
+
+  <div class="nav-right social-icons">
+    <a href="https://www.instagram.com/accounts/onetap/?next=%2F&hl=es-la" target="_blank" rel="noopener noreferrer"><img src="img/instagram.jpg" alt="I" /></a>
+    <a href="https://co.pinterest.com/gnarent/_profile/" target="_blank" rel="noopener noreferrer"><img src="img/pinterest.jpg" alt="P" /></a>
+    <a href="https://www.facebook.com/share/15G8ndSGjp/" target="_blank" rel="noopener noreferrer"><img src="img/facebook.jpg" alt="F" /></a>
+    <a href="https://www.tiktok.com/@njgq18?_t=ZS-8wWTbLR7kRd&_r=1" target="_blank" rel="noopener noreferrer"><img src="img/tiktok.jpg" alt="T" /></a>
+  </div>
+</nav>
+
+
+
+ <!-- nav de sentidos -->
+  
+<nav class="navbarr"> 
+  <ul>
+    <li><a href="olfato.html" data-opcion="olfato">Olfato</a></li>
+    <li><a href="oido.html" data-opcion="oido">Oído</a></li>
+    <li><a href="gusto.html" data-opcion="gusto">Gusto</a></li>
+    <li><a href="tacto.html" data-opcion="tacto">Tacto</a></li>
+    <li><a href="vista.html" data-opcion="vista" id="link-vista">Vista</a></li>
+  </ul>
+</nav>
+
+<!-- logo de bienvenida -->
+
+ 
+<div class="wave-text-container">
+  <svg viewBox="-100 0 700 120" xmlns="http://www.w3.org/2000/svg">
+    <path id="wave" d="M0,60 Q125,0 250,60 T500,60" fill="transparent" />
+    <text font-size="48" fill="#fbc742" font-weight="bold">
+      <textPath href="#wave" startOffset="0%">Bienvenido..</textPath>
+    </text>
+  </svg>
+</div>
+
+<section class="ero">
+ <section class="ero">
+  <img src="img/fondo2.png" alt="Imagen decorativa" class="imagen-d">
+</section>
+
+
+    <!-- Múltiples estrellas animadas -->
+
+ <div class="wave-stars-container">
+  <svg id="svg-estrellas" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" >
+ <path id="wave" d="M0,60 Q125,-40 250,60 T500,60" fill="transparent" />
+
+
+    <defs>
+      <symbol id="spark" viewBox="0 0 20 20">
+        <path d="M10 0 L12 7 L20 10 L12 13 L10 20 L8 13 L0 10 L8 7 Z" fill="#fbc742" />
+      </symbol>
+    </defs>
+
+    <use href="#spark" transform="scale(0.5)" opacity="1">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="0s">
+        <mpath href="#wave" />
+      </animateMotion>
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="6s" repeatCount="indefinite" begin="0s" />
+    </use>
+
+    <use href="#spark" transform="scale(0.5)" opacity="0.8">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="2s">
+        <mpath href="#wave" />
+      </animateMotion>
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="6s" repeatCount="indefinite" begin="2s" />
+    </use>
+
+    <use href="#spark" transform="scale(0.5)" opacity="0.6">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="4s">
+        <mpath href="#wave" />
+      </animateMotion>
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="6s" repeatCount="indefinite" begin="4s" />
+    </use>
+  </svg>
+
+  <div class="wave-stars-fade"></div>
+</div>
+
+
+  <!-- Imagenes de los sentidos -->
+
+    <section id="Senses">
+      
+      <div class="sentidos" id="sentidos">
+       
+        <a href="olfato.html"><img src="img/olfato.jpg" alt="Olfato" /></a>
+        <a href="oido.html"><img src="img/oido.jpg" alt="Oído" /></a>
+        <a href="gusto.html"><img src="img/gusto.jpg" alt="Gusto" /></a>
+        <a href="tacto.html"><img src="img/tacto.jpg" alt="Tacto" /></a>
+      </div>
+       <h1 id="titulo_desbloqueo">Cinco sentidos, cinco caminos... y en cada uno, una pista. ¿Estás listo para sentir y descubrir?
+  💖</h1>
+    </section>
+
+
+  <!-- mensaje final -->    <!-- footer -->
+
+<footer>
+   <p class="titilar">Desbloquea el sentido de la vista 👁️ </p>
+  
+<!-- Barra de progreso -->
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Modal Final -->
+ <div id="modal-final">
+  <div id="modal-contenido">
+    <span class="cerrar-modal" id="cerrar-modal">&times;</span>
+    <p>¡Felicidades! <br>Has explorado todos los sentidos. <br>Ahora puedes acceder a Vista.</p>
+    <a href="vista.html">💛</a>
+  </div>
+</div>
+
+  <div class="footer-main">
+    <div class="footer-left">
+      <img src="img/1.png" alt="logo" id="logo_footer">
+    </div>
+
+<div class="footer-center">
+  <h3>Comunícate conmigo</h3>
+  <form id="contact-form" class="newsletter-form" action="https://script.google.com/macros/s/AKfycbyCQedUeIBqSWEVzoiIj5fGHQ3AR7t4_L8DrLVSqk2xui4VN8bPlpN62ouh6eELR5HB/exec" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <textarea name="mensaje" placeholder="Tu mensaje o comentario" rows="4" style="padding: 10px; border-radius: 20px; border: 1px solid #5f83ff; outline: none;" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="form-status" style="margin-top:10px; color: #ffffff;"></p>
+</div>
+
+ <div class="footer-links">
+  <div>
+    <h4>Info</h4>
+    <ul>
+      <li><a href="#" data-my-modal="myModal1">FAQs</a></li>
+      <li><a href="#" data-my-modal="myModal2">Shipping Policy</a></li>
+      <li><a href="#" data-my-modal="myModal3">Refund Policy</a></li>
+      <li><a href="#" data-my-modal="myModal4">Terms of Service</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modales personalizados -->
+<div id="myModal1" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-faqs">
+  <div class="modal-content-faqs">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>FAQs</h1></center> 
+
+<h2>1. ¿Qué tipo de página web es esta?</h2>
+<p>Es La Página Narent´s Senses™. Aquí no solo navegas: exploras, te ríes, recuerdas cosas de nosotros y... ¡buscas regalos escondidos como si fueras Marlin buscando a Nemo y a Dory!</p>
+
+<h2>2. ¿Los sentidos? ¿Así como vista, olfato y esas cosas?</h2>
+<p>Exacto. Cada sección está dedicada a uno de los sentidos: vista, oído, olfato, gusto y tacto. En cada uno encontrarás curiosidades, detalles nuestros y, si usas bien tus sentidos... una sorpresa escondida.</p>
+
+<h2>3. ¿O sea que tengo que buscar cosas? ¿Esto es una misión secreta?</h2>
+<p>Totalmente. Tu misión, si decides aceptarla (y debes), es encontrar el regalo escondido en cada sentido. Consejo: no hagas trampa.</p>
+
+<h2>4. ¿Qué pasa si me pierdo o no encuentro el regalo?</h2>
+<p>Puedes decirme. Te daré pistas. O haré como que no sé nada y me reiré mientras lo intentas.</p>
+
+<h2>5. ¿Esto es mejor que Netflix y Disney+?</h2>
+<p>¡Por supuesto! ¿Estas apps te dan un regalo escondido? No, no lo creo.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-shipping">
+  <div class="modal-content-shipping">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Shipping Policy</h1></center>
+<h2>¿Cómo llega tu regalo?</h2>
+<p>Cada regalo está empaquetado con todo el cariño del mundo y un toque extra de magia invisible para que llegue perfecto hasta tus manos.</p>
+
+<h2>¿Cuánto tarda en llegar?</h2>
+<p>Puede tardar desde “Ya casi” hasta “Cuando se pueda”, dependiendo de dónde estemos y del clima.</p>
+
+<h2>¿Y si se pierde?</h2>
+<p>Si eso pasa, te prometo que lo busco por todos lados, hasta debajo de la cama.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal3" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-policy">
+  <div class="modal-content-policy">
+    <button class="myClose-btn">&times;</button>
+   <center><h1>Refund Policy</h1></center> 
+    <p>Aquí no hay reembolsos porque este regalo está hecho con puro amor y cero devoluciones.Así que, ¡disfrútalo y no pienses en devolverlo!.</p>
+
+    <p>Consejo amistoso: Disfruta el regalo.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div id="myModal4" class="custom-modal">
+  <div class="custom-modal-content">
+  <div id="mod-faqs" class="modal-terms">
+  <div class="modal-content-terms">
+    <button class="myClose-btn">&times;</button>
+    <center><h1>Terms of Service</h1></center>
+<p>1.Este regalo es exclusivo y personalizado, por lo que no puede ser compartido ni prestado… a menos que quieras ganarte una multa.</p>
+
+<p>2.Cualquier intento de abrir el regalo antes de tiempo resultará en un sermón y posiblemente en un baile ridículo para distraerte.</p>
+
+<p>3.La sonrisa del receptor es obligatoria y, si no se cumple, Tendrá que ofrecer una sesión extra de mimos para corregirlo.</p>
+
+<p>4.Este regalo no es reembolsable, intercambiable ni transferible, pero sí es 100% garantizado para crear momentos memorables.</p>
+
+<p>5.Cualquier uso indebido del regalo será sancionado.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+</div><!-- cierra Modales personalizados -->
+</footer>
+<div id="divenblanco">
+
+</div>
+ <div class="footer-bottom">
+      <p>Narent's Senses © 2025</p>
+    </div>
+
+  
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+
+  localStorage.removeItem("completados");
+  
+  // Crear estrellas
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement("img");
+    star.src = "img/estrella.png";
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (6 + Math.random() * 4) + "s";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    const size = 10 + Math.random() * 10;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    document.body.appendChild(star);
+  }
+
+  // Mostrar primer modal con display correcto
+  function mostrarModal() {
+    const modal1 = document.getElementById("modal");
+    const modal2 = document.getElementById("modal2");
+    if(modal1 && modal2){
+      modal1.style.display = "flex"; // o block, depende de tu CSS
+      modal2.style.display = "none";
+    }
+  }
+
+  // Esperar a que el DOM esté listo
+  document.addEventListener("DOMContentLoaded", function() {
+    if (!sessionStorage.getItem("modalesMostrados")) {
+      mostrarModal();
+      sessionStorage.setItem("modalesMostrados", "true");
+    } else {
+      // Ocultar modales y mostrar contenido
+      const modal1 = document.getElementById("modal");
+      const modal2 = document.getElementById("modal2");
+      const contenido = document.getElementById("contenido");
+      const sentidos = document.getElementById("sentidos");
+      const mensajeFinal = document.getElementById("mensajeFinal");
+
+      if(modal1) modal1.style.display = "none";
+      if(modal2) modal2.style.display = "none";
+      if(contenido) contenido.classList.remove("oculto");
+      if(sentidos){
+        sentidos.style.opacity = 1;
+        sentidos.style.transform = "translateY(0)";
+      }
+      if(mensajeFinal) mensajeFinal.style.opacity = 1;
+    }
+  });
+
+  function cerrarModal() {
+    const modal1 = document.getElementById("modal");
+    const modal2 = document.getElementById("modal2");
+    if(modal1) modal1.style.display = "none";
+    if(modal2) modal2.style.display = "flex";
+  }
+
+  function cerrarModal2() {
+    const modal2 = document.getElementById("modal2");
+    const contenido = document.getElementById("contenido");
+    const sentidos = document.getElementById("sentidos");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+
+    if(modal2) modal2.style.display = "none";
+    if(contenido) contenido.classList.remove("oculto");
+
+    setTimeout(() => {
+      if(sentidos){
+        sentidos.style.opacity = 1;
+        sentidos.style.transform = "translateY(0)";
+      }
+    }, 100);
+
+    setTimeout(() => {
+      if(mensajeFinal) mensajeFinal.style.opacity = 1;
+    }, 3000);
+  }
+
+  function reiniciar() {
+    sessionStorage.removeItem("modalesMostrados");
+    location.reload();
+  }
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sentidos = ['tacto', 'olfato', 'oido', 'gusto'];
+  const sentidoVista = 'vista';
+  const inputBox = document.getElementById('inputBox');
+  const iconBtn = document.getElementById('iconBtn');
+  const vistaLink = document.getElementById('link-vista');
+  const barra = document.getElementById('barra') || document.getElementById('progress-bar');
+  const mensaje = document.getElementById('mensajeVolver');
+  const modal = document.getElementById('modal-final');
+  const cerrarModal = document.getElementById('cerrar-modal');
+
+  // Crear lista de resultados si existe inputBox
+  if (inputBox) {
+    const listaResultados = document.createElement("ul");
+    listaResultados.id = "lista-resultados";
+    inputBox.parentNode.appendChild(listaResultados);
+  }
+
+  // Recuperar progreso
+  let visitados = JSON.parse(localStorage.getItem('sentidos')) || {};
+  localStorage.setItem('sentidos', JSON.stringify(visitados)); // asegurar que siempre se guarda
+
+  const completados = sentidos.filter(s => visitados[s]);
+  const porcentaje = (completados.length / sentidos.length) * 100;
+
+  // Actualizar barra
+  if (barra) barra.style.width = porcentaje + '%';
+
+  // Marcar si la barra está llena
+  localStorage.setItem('barraLlena', porcentaje === 100 ? 'true' : 'false');
+
+  // Desbloqueo de vista y modal
+  if (completados.length === sentidos.length) {
+    localStorage.setItem('vistaDesbloqueada', 'true');
+
+    if (vistaLink) {
+      vistaLink.style.pointerEvents = 'auto';
+      vistaLink.style.opacity = '1';
+      vistaLink.classList.remove('bloqueado');
+      vistaLink.removeAttribute('title');
+    }
+
+    if (mensaje) mensaje.style.display = 'inline';
+
+    if (!localStorage.getItem('modalMostrado') && modal) {
+      modal.style.display = 'flex';
+      localStorage.setItem('modalMostrado', 'true');
+    }
+  } else {
+    localStorage.setItem('vistaDesbloqueada', 'false');
+
+    if (vistaLink) {
+      vistaLink.style.pointerEvents = 'none';
+      vistaLink.style.opacity = '0.5';
+      vistaLink.classList.add('bloqueado');
+      vistaLink.title = 'Debes completar todos los sentidos para desbloquear';
+    }
+
+    if (mensaje) mensaje.style.display = 'none';
+  }
+
+  // Cerrar modal
+  if (cerrarModal && modal) {
+    cerrarModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  }
+});
+
+
+
+
+
+  // ==========================
+  // FUNCIONALIDAD DEL BOTÓN DE BÚSQUEDA (ICONO)
+  // ==========================
+  iconBtn.addEventListener('click', () => {
+    inputBox.classList.toggle('show');
+    if (inputBox.classList.contains('show')) {
+      inputBox.focus();
+    }
+  });
+  // ==========================
+  // FUNCIONALIDAD DEL BUSCADOR DE SENTIDOS
+  // ==========================
+  inputBox.addEventListener("input", () => {
+    const termino = inputBox.value.toLowerCase().trim();
+    listaResultados.innerHTML = "";
+
+    if (!termino) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    const resultados = sentidos.filter(s => {
+      if (s === 'vista' && !vistaDesbloqueada && !termino.includes('vista')) return false;
+      return s.includes(termino);
+    });
+
+    if (termino.includes("vista") && !vistaDesbloqueada && !resultados.includes('vista')) {
+      resultados.push("vista");
+    }
+
+    if (resultados.length === 0) {
+      listaResultados.style.display = "none";
+      return;
+    }
+
+    resultados.forEach(sentido => {
+      const li = document.createElement("li");
+      li.textContent = sentido.charAt(0).toUpperCase() + sentido.slice(1);
+      li.classList.add("opcion-buscador");
+
+      if (sentido === "vista" && !vistaDesbloqueada) {
+        li.classList.add("bloqueado");
+        li.title = "Debes completar los otros sentidos primero.";
+      } else {
+        li.addEventListener("click", () => {
+          visitados[sentido] = true;
+          localStorage.setItem('sentidos', JSON.stringify(visitados));
+          actualizarProgreso();
+
+          inputBox.value = "";
+          listaResultados.innerHTML = "";
+          listaResultados.style.display = "none";
+
+          window.location.href = `${sentido}.html`;
+        });
+      }
+
+      listaResultados.appendChild(li);
+    });
+
+    listaResultados.style.display = "block";
+  });
+
+  // ==========================
+  // OCULTAR LISTA DE RESULTADOS SI SE HACE CLIC FUERA DEL BUSCADOR
+  // ==========================
+  document.addEventListener("click", function(e) {
+    const esClickFueraBuscador = !inputBox.contains(e.target) && !listaResultados.contains(e.target);
+    const esParteDeModal = e.target.closest('.modal') !== null || e.target.classList.contains('cerrar-modal');
+
+    if (esClickFueraBuscador && !esParteDeModal) {
+      listaResultados.innerHTML = "";
+      listaResultados.style.display = "none";
+    }
+  });
+
+
+
+
+  
+
+//Formulario
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recargar la página
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'  // Para evitar problemas CORS con Apps Script
+    }).then(() => {
+      status.style.color = 'blue';
+      status.textContent = '¡Mensaje enviado con éxito!';
+      form.reset();
+    }).catch((error) => {
+      status.style.color = 'blue';
+      status.textContent = 'Hubo un error al enviar el mensaje.';
+      console.error('Error:', error);
+    });
+  });
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//politicas
+
+ document.querySelectorAll('a[data-my-modal]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = link.getAttribute('data-my-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'block';
+    });
+  });
+
+  document.querySelectorAll('.custom-modal .myClose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.custom-modal').style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('custom-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  //reiniciar
+
+document.getElementById('resetBtn').addEventListener('click', function () {
+  localStorage.clear();
+  location.reload(); // Esto recarga la página
+});
+
+
+</script>
+
+
+</body>
+</html>
